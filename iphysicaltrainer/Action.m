@@ -12,7 +12,9 @@
 @synthesize image;
 @synthesize name;
 @synthesize count;
+
 #pragma mark - factory methods
+
 +(Action *)actionWithName:(NSString*)name {
     Action *newAct = [Action alloc];
     [newAct setName:name];

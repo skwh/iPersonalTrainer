@@ -64,6 +64,8 @@
 		18D4B81D178C7A52008175A2 /* workoutList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18D4B81B178C7A52008175A2 /* workoutList.plist */; };
 		18D4B85D178CD42C008175A2 /* workoutList-edit.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18D4B85C178CD42B008175A2 /* workoutList-edit.plist */; };
 		18D4B85E178CD42C008175A2 /* workoutList-edit.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18D4B85C178CD42B008175A2 /* workoutList-edit.plist */; };
+		18D4B861178DBD4C008175A2 /* workoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D4B860178DBD4B008175A2 /* workoutManager.m */; };
+		18D4B862178DBD4C008175A2 /* workoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D4B860178DBD4B008175A2 /* workoutManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,6 +133,8 @@
 		18D4B818178C6886008175A2 /* Workout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Workout.m; sourceTree = "<group>"; };
 		18D4B81B178C7A52008175A2 /* workoutList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = workoutList.plist; sourceTree = "<group>"; };
 		18D4B85C178CD42B008175A2 /* workoutList-edit.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "workoutList-edit.plist"; sourceTree = "<group>"; };
+		18D4B85F178DBD4B008175A2 /* workoutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = workoutManager.h; sourceTree = "<group>"; };
+		18D4B860178DBD4B008175A2 /* workoutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = workoutManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,6 +232,8 @@
 				1894EEF4178B62AF00EECEC3 /* Action.m */,
 				18D4B817178C6886008175A2 /* Workout.h */,
 				18D4B818178C6886008175A2 /* Workout.m */,
+				18D4B85F178DBD4B008175A2 /* workoutManager.h */,
+				18D4B860178DBD4B008175A2 /* workoutManager.m */,
 			);
 			name = iPersonalTrainer;
 			path = iphysicaltrainer;
@@ -413,6 +419,7 @@
 				1894EEEF178B628900EECEC3 /* addActionViewController.m in Sources */,
 				1894EEF5178B62AF00EECEC3 /* Action.m in Sources */,
 				18D4B819178C6886008175A2 /* Workout.m in Sources */,
+				18D4B861178DBD4C008175A2 /* workoutManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,6 +436,7 @@
 				1894EEF0178B628900EECEC3 /* addActionViewController.m in Sources */,
 				1894EEF6178B62AF00EECEC3 /* Action.m in Sources */,
 				18D4B81A178C6886008175A2 /* Workout.m in Sources */,
+				18D4B862178DBD4C008175A2 /* workoutManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

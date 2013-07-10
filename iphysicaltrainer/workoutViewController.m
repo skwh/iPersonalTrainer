@@ -89,7 +89,8 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
     }
     Action *currentAction = [[[self getWorkoutFromController] actionsArray] objectAtIndex:indexPath.row];
-    cell.textLabel.text = currentAction.name;
+    NSLog(@"%@",[currentAction description]);
+    cell.textLabel.text = [currentAction description];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",currentAction.count];
     return cell;
 }

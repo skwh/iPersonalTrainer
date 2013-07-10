@@ -15,8 +15,8 @@
 +(Action *)actionWithName:(NSString *)name andImage:(UIImage *)image;
 +(Action *)actionWithName:(NSString *)name andCount:(NSString *)count andImage:(UIImage *)image;
 
-@property UIImage *image;
-@property NSString *name;
-@property NSString *count;
+@property (atomic) UIImage *image;
+@property (atomic) NSString *name;
+@property (atomic) NSString *count;
 
 @end

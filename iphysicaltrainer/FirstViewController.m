@@ -57,7 +57,7 @@
     [_tableView reloadData];
 }
 -(void)writeToWorkouts:(NSMutableDictionary *)dictionary {
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"workoutList-edit" ofType:@"plist"];
+    //NSString *path = [[NSBundle mainBundle] pathForResource:@"workoutList-edit" ofType:@"plist"];
     NSLog(@"Write to workouts called!");
 }
 
