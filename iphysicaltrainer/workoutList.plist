@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>counts</key>
+		<array>
+			<integer>10</integer>
+			<string>2 min</string>
+			<integer>10</integer>
+		</array>
+		<key>actions</key>
+		<array>
+			<string>Crunches on ball</string>
+			<string>Plank</string>
+			<string>Situps</string>
+		</array>
+		<key>name</key>
+		<string>Abs</string>
+	</dict>
+	<dict>
+		<key>counts</key>
+		<array>
+			<integer>20</integer>
+		</array>
+		<key>actions</key>
+		<array>
+			<string>Squats</string>
+		</array>
+		<key>name</key>
+		<string>Glutes</string>
+	</dict>
+	<dict>
+		<key>counts</key>
+		<array>
+			<string>4 mi</string>
+		</array>
+		<key>actions</key>
+		<array>
+			<string>Run</string>
+		</array>
+		<key>name</key>
+		<string>Long Distance</string>
+	</dict>
+	<dict>
+		<key>counts</key>
+		<array>
+			<string>30 min</string>
+			<integer>5</integer>
+			<integer>50</integer>
+		</array>
+		<key>actions</key>
+		<array>
+			<string>Bike</string>
+			<string>10m sprints</string>
+			<string>Jumping Jacks</string>
+		</array>
+		<key>name</key>
+		<string>Aerobic</string>
+	</dict>
+	<dict>
+		<key>counts</key>
+		<array>
+			<integer>20</integer>
+		</array>
+		<key>actions</key>
+		<array>
+			<string>Dumbell Lifts</string>
+		</array>
+		<key>name</key>
+		<string>Lifting</string>
+	</dict>
+	<dict>
+		<key>counts</key>
+		<array>
+			<string>100 m</string>
+		</array>
+		<key>actions</key>
+		<array>
+			<string>Sprint</string>
+		</array>
+		<key>name</key>
+		<string>Short Distance</string>
+	</dict>
+</array>
+</plist>
