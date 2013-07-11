@@ -36,6 +36,12 @@
 		188CCB7F178763BF00150942 /* workoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188CCB7C178763BF00150942 /* workoutViewController.m */; };
 		188CCB80178763BF00150942 /* workoutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 188CCB7D178763BF00150942 /* workoutViewController.xib */; };
 		188CCB81178763BF00150942 /* workoutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 188CCB7D178763BF00150942 /* workoutViewController.xib */; };
+		188DD636178F25810041B541 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188DD635178F25810041B541 /* MapKit.framework */; };
+		188DD639178F2CE00041B541 /* LargeFirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 188DD638178F2CE00041B541 /* LargeFirstViewController.xib */; };
+		188DD63B178F43460041B541 /* LargeSecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 188DD63A178F43460041B541 /* LargeSecondViewController.xib */; };
+		188DD63C178F43460041B541 /* LargeSecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 188DD63A178F43460041B541 /* LargeSecondViewController.xib */; };
+		188DD63E178F44D40041B541 /* LargeWorkoutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 188DD63D178F44D40041B541 /* LargeWorkoutViewController.xib */; };
+		188DD63F178F44D40041B541 /* LargeWorkoutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 188DD63D178F44D40041B541 /* LargeWorkoutViewController.xib */; };
 		1894EED3178B4CAA00EECEC3 /* workoutProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 1894EED1178B4CAA00EECEC3 /* workoutProgress.m */; };
 		1894EED4178B4CAA00EECEC3 /* workoutProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 1894EED1178B4CAA00EECEC3 /* workoutProgress.m */; };
 		1894EED5178B4CAA00EECEC3 /* workoutProgress.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1894EED2178B4CAA00EECEC3 /* workoutProgress.xib */; };
@@ -110,6 +116,10 @@
 		188CCB7B178763BE00150942 /* workoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = workoutViewController.h; sourceTree = "<group>"; };
 		188CCB7C178763BF00150942 /* workoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = workoutViewController.m; sourceTree = "<group>"; };
 		188CCB7D178763BF00150942 /* workoutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = workoutViewController.xib; sourceTree = "<group>"; };
+		188DD635178F25810041B541 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		188DD638178F2CE00041B541 /* LargeFirstViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LargeFirstViewController.xib; sourceTree = "<group>"; };
+		188DD63A178F43460041B541 /* LargeSecondViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LargeSecondViewController.xib; sourceTree = "<group>"; };
+		188DD63D178F44D40041B541 /* LargeWorkoutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LargeWorkoutViewController.xib; sourceTree = "<group>"; };
 		1894EED0178B4CAA00EECEC3 /* workoutProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = workoutProgress.h; sourceTree = "<group>"; };
 		1894EED1178B4CAA00EECEC3 /* workoutProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = workoutProgress.m; sourceTree = "<group>"; };
 		1894EED2178B4CAA00EECEC3 /* workoutProgress.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = workoutProgress.xib; sourceTree = "<group>"; };
@@ -138,6 +148,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				188DD636178F25810041B541 /* MapKit.framework in Frameworks */,
 				188CCB2C1787401700150942 /* UIKit.framework in Frameworks */,
 				188CCB2E1787401700150942 /* Foundation.framework in Frameworks */,
 				188CCB301787401700150942 /* CoreGraphics.framework in Frameworks */,
@@ -181,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				188CCB741787414900150942 /* libKiwi.a */,
+				188DD635178F25810041B541 /* MapKit.framework */,
 				188CCB2B1787401700150942 /* UIKit.framework */,
 				188CCB2D1787401700150942 /* Foundation.framework */,
 				188CCB2F1787401700150942 /* CoreGraphics.framework */,
@@ -192,38 +204,15 @@
 		188CCB311787401700150942 /* iPersonalTrainer */ = {
 			isa = PBXGroup;
 			children = (
+				188DD637178F2C3D0041B541 /* View Controllers */,
 				188CCB781787461800150942 /* first-circle.png */,
 				188CCB3A1787401700150942 /* AppDelegate.h */,
 				188CCB3B1787401700150942 /* AppDelegate.m */,
-				188CCB431787401700150942 /* FirstViewController.h */,
-				188CCB441787401700150942 /* FirstViewController.m */,
 				188CCB461787401700150942 /* first.png */,
 				188CCB481787401700150942 /* first@2x.png */,
-				188CCB4A1787401700150942 /* SecondViewController.h */,
-				188CCB4B1787401700150942 /* SecondViewController.m */,
 				188CCB4D1787401700150942 /* second.png */,
 				188CCB4F1787401700150942 /* second@2x.png */,
-				188CCB511787401700150942 /* FirstViewController.xib */,
-				188CCB541787401700150942 /* SecondViewController.xib */,
 				188CCB321787401700150942 /* Supporting Files */,
-				188CCB7B178763BE00150942 /* workoutViewController.h */,
-				188CCB7C178763BF00150942 /* workoutViewController.m */,
-				188CCB7D178763BF00150942 /* workoutViewController.xib */,
-				1894EED0178B4CAA00EECEC3 /* workoutProgress.h */,
-				1894EED1178B4CAA00EECEC3 /* workoutProgress.m */,
-				1894EED2178B4CAA00EECEC3 /* workoutProgress.xib */,
-				1894EED7178B4D8900EECEC3 /* workoutStatsViewController.h */,
-				1894EED8178B4D8900EECEC3 /* workoutStatsViewController.m */,
-				1894EED9178B4D8900EECEC3 /* workoutStatsViewController.xib */,
-				1894EEDE178B5E2200EECEC3 /* addWorkoutViewController.h */,
-				1894EEDF178B5E2200EECEC3 /* addWorkoutViewController.m */,
-				1894EEE0178B5E2200EECEC3 /* addWorkoutViewController.xib */,
-				1894EEE5178B626500EECEC3 /* actionEditViewController.h */,
-				1894EEE6178B626500EECEC3 /* actionEditViewController.m */,
-				1894EEE7178B626500EECEC3 /* actionEditViewController.xib */,
-				1894EEEC178B628800EECEC3 /* addActionViewController.h */,
-				1894EEED178B628900EECEC3 /* addActionViewController.m */,
-				1894EEEE178B628900EECEC3 /* addActionViewController.xib */,
 				1894EEF3178B62AE00EECEC3 /* Action.h */,
 				1894EEF4178B62AF00EECEC3 /* Action.m */,
 				18D4B817178C6886008175A2 /* Workout.h */,
@@ -266,6 +255,40 @@
 				188CCB661787401700150942 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		188DD637178F2C3D0041B541 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				188CCB431787401700150942 /* FirstViewController.h */,
+				188CCB441787401700150942 /* FirstViewController.m */,
+				188CCB511787401700150942 /* FirstViewController.xib */,
+				188DD638178F2CE00041B541 /* LargeFirstViewController.xib */,
+				188CCB4A1787401700150942 /* SecondViewController.h */,
+				188CCB4B1787401700150942 /* SecondViewController.m */,
+				188CCB541787401700150942 /* SecondViewController.xib */,
+				188DD63A178F43460041B541 /* LargeSecondViewController.xib */,
+				188CCB7B178763BE00150942 /* workoutViewController.h */,
+				188CCB7C178763BF00150942 /* workoutViewController.m */,
+				188CCB7D178763BF00150942 /* workoutViewController.xib */,
+				188DD63D178F44D40041B541 /* LargeWorkoutViewController.xib */,
+				1894EED0178B4CAA00EECEC3 /* workoutProgress.h */,
+				1894EED1178B4CAA00EECEC3 /* workoutProgress.m */,
+				1894EED2178B4CAA00EECEC3 /* workoutProgress.xib */,
+				1894EED7178B4D8900EECEC3 /* workoutStatsViewController.h */,
+				1894EED8178B4D8900EECEC3 /* workoutStatsViewController.m */,
+				1894EED9178B4D8900EECEC3 /* workoutStatsViewController.xib */,
+				1894EEDE178B5E2200EECEC3 /* addWorkoutViewController.h */,
+				1894EEDF178B5E2200EECEC3 /* addWorkoutViewController.m */,
+				1894EEE0178B5E2200EECEC3 /* addWorkoutViewController.xib */,
+				1894EEE5178B626500EECEC3 /* actionEditViewController.h */,
+				1894EEE6178B626500EECEC3 /* actionEditViewController.m */,
+				1894EEE7178B626500EECEC3 /* actionEditViewController.xib */,
+				1894EEEC178B628800EECEC3 /* addActionViewController.h */,
+				1894EEED178B628900EECEC3 /* addActionViewController.m */,
+				1894EEEE178B628900EECEC3 /* addActionViewController.xib */,
+			);
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -358,6 +381,9 @@
 				1894EEF1178B628900EECEC3 /* addActionViewController.xib in Resources */,
 				18D4B81C178C7A52008175A2 /* workoutList.plist in Resources */,
 				18D4B85D178CD42C008175A2 /* workoutList-edit.plist in Resources */,
+				188DD639178F2CE00041B541 /* LargeFirstViewController.xib in Resources */,
+				188DD63B178F43460041B541 /* LargeSecondViewController.xib in Resources */,
+				188DD63E178F44D40041B541 /* LargeWorkoutViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,6 +401,8 @@
 				1894EEF2178B628900EECEC3 /* addActionViewController.xib in Resources */,
 				18D4B81D178C7A52008175A2 /* workoutList.plist in Resources */,
 				18D4B85E178CD42C008175A2 /* workoutList-edit.plist in Resources */,
+				188DD63C178F43460041B541 /* LargeSecondViewController.xib in Resources */,
+				188DD63F178F44D40041B541 /* LargeWorkoutViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

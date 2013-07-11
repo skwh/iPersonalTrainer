@@ -18,10 +18,18 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    // Override point for customization after application launch.
+    NSLog(@"Iphone %f ",[[UIScreen mainScreen] bounds].size.height);
     
-    UIViewController *viewController1 = [[FirstViewController alloc] initWithNibName:@"FirstViewController" bundle:nil];
-    UIViewController *viewController2 = [[SecondViewController alloc] initWithNibName:@"SecondViewController" bundle:nil];
+    // Override point for customization after application launch.
+    UIViewController *viewController1;
+    UIViewController *viewController2;
+    if ([[UIScreen mainScreen] bounds].size.height == 568) {
+        viewController1 = [[FirstViewController alloc] initWithNibName:@"LargeFirstViewController" bundle:nil];
+        viewController2 = [[SecondViewController alloc] initWithNibName:@"LargeSecondViewController" bundle:nil];
+    } else {
+        viewController1 = [[FirstViewController alloc] initWithNibName:@"FirstViewController" bundle:nil];
+        viewController2 = [[SecondViewController alloc] initWithNibName:@"SecondViewController" bundle:nil];
+    }
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:viewController1];
     
     self.tabBarController = [[UITabBarController alloc] init];
