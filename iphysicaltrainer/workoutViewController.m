@@ -35,13 +35,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    NSLog(@"workoutViewControllerLoaded, with workout:%@",_workoutName);
     UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editButtonPressed)];
     [[self navigationItem] setRightBarButtonItem:button];
-//    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back"
-//                                      style: UIBarButtonItemStyleBordered
-//                                     target:nil
-//                                     action:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -55,31 +50,31 @@
     [_actionListTable reloadData];
 }
 
--(Workout *)getWorkoutFromController {
-    return [[self delegate] getWorkout:_workoutName];
-}
-
 #pragma mark - NavigationController methods
 
 -(IBAction)continueToNextView:(id)sender {
+    //check which button called the method
     if (sender == _stats) {
+        //create a new stats controller and push it
         workoutStatsViewController *statsController = [[workoutStatsViewController alloc] initWithNibName:@"workoutStatsViewController" bundle:nil];
         [[self navigationController] pushViewController:statsController animated:TRUE];
     } else if (sender == _start) {
+        //create a new start controller and push it
         workoutProgress *progressController = [[workoutProgress alloc] initWithNibName:@"workoutProgress" bundle:nil];
         [[self navigationController] pushViewController:progressController animated:TRUE];
     }
 }
 
--(void)addAction {
+-(void)addActionButtonPressed {
+    //create the addController and push it
     addActionViewController *addController = [[addActionViewController alloc] initWithNibName:@"addActionViewController" bundle:nil];
     [[self navigationController] pushViewController:addController animated:TRUE];
 }
 
-#pragma mark - UITableViewDataSource methods
+#pragma mark - UITableView methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[[self getWorkoutFromController] actionsArray] count];
+    return [[self delegate] getActionNumberForWorkout:[self getWorkoutFromController]];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -88,18 +83,31 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
     }
+    //get current action from the workout from the workoutcontroller
     Action *currentAction = [[[self getWorkoutFromController] actionsArray] objectAtIndex:indexPath.row];
-    NSLog(@"%@",[currentAction description]);
-    cell.textLabel.text = [currentAction description];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",currentAction.count];
+    //check if the action retrieved is valid
+    if (currentAction != nil) {
+        cell.textLabel.text = [currentAction name];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",currentAction.count];
+    } else {
+        cell.textLabel.text = @"Error";
+        cell.detailTextLabel.text = @"Oh lawd so many errors";
+    }
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    //tell the tableview to begin updating
     [tableView beginUpdates];
-    Action *actionDeleted = [[[self getWorkoutFromController] actionsDict] objectForKey:[tableView cellForRowAtIndexPath:indexPath].textLabel.text];
-    [self removeActionsFromWorkout:actionDeleted];
+    //get the cell text at index
+    NSString *cellText = [tableView cellForRowAtIndexPath:indexPath].textLabel.text;
+    //find the action being deleted based on the row selected
+    Action *actionDeleted = [[self delegate] getAction:cellText forWorkout:[self getWorkoutFromController]];
+    //remove the actions with the workout data methods
+    [self removeActionFromWorkout:actionDeleted];
+    //tell the table to delete the row
     [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    //end the updates
     [tableView endUpdates];
 }
 
@@ -107,53 +115,69 @@
     return UITableViewCellEditingStyleDelete;
 }
 
-#pragma mark - Recieve data methods
+#pragma mark - Workout data methods
 
--(void)refreshLabelData {
-    [self setTitle:_workoutName];
-    [_actionListTable reloadData];
+-(Workout *)getWorkoutFromController {
+    //use getWorkout rather than getWorkoutFromReloadedWorkouts because it takes less time
+    return [[self delegate] getWorkout:_workoutName];
 }
 
--(void)addActionsToWorkout:(NSArray *)newActions {
-    [[[self getWorkoutFromController] actionsArray] addObjectsFromArray:newActions];
+-(void)addActionToWorkout:(Action *)newAction {
+    //use updateWorkout:addAction because it is complete
+    [[self delegate] updateWorkout:[self getWorkoutFromController] addAction:newAction];
 }
 
--(void)removeActionsFromWorkout:(Action *)deletedActions {
-    [[self delegate] updateWorkout:[self getWorkoutFromController] ofAction:deletedActions];
+-(void)removeActionFromWorkout:(Action *)deletedAction {
+    //use updateWorkout:removeAction because it is complete
+    [[self delegate] updateWorkout:[self getWorkoutFromController] removeAction:deletedAction];
 }
 
 #pragma mark - edit mode methods
 
 -(void)editButtonPressed {
+    //set the table to editing mode
     [_actionListTable setEditing:TRUE];
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addAction)];
+    //create and push the add button
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addActionButtonPressed)];
     [[self navigationItem] setLeftBarButtonItem:addButton animated:TRUE];
-    editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(editButtonDone)];
-    [[self navigationItem] setRightBarButtonItem:editButton animated:TRUE];
-    [self disableButtons];
+    //create and push the done button
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(editButtonDonePressed)];
+    [[self navigationItem] setRightBarButtonItem:doneButton animated:TRUE];
+    //disable start & stats buttons
+    [self disableStartStatsButtons];
 }
 
--(void)editButtonDone {
+-(void)editButtonDonePressed {
+    //set the table to normal mode
     [_actionListTable setEditing:FALSE];
+    //remove the add button
     [[self navigationItem] setLeftBarButtonItem:nil animated:NO];
+    //revert to the edit button and push it
     editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editButtonPressed)];
     [[self navigationItem] setRightBarButtonItem:editButton];
-    [self enableButtons];
+    //enable start stats buttons
+    [self enableStartStatsButtons];
 }
 
--(void)disableButtons {
+-(void)disableStartStatsButtons {
     [_start setAlpha:0.5f];
     [_stats setAlpha:0.5f];
     [_start setEnabled:FALSE];
     [_stats setEnabled:FALSE];
 }
 
--(void)enableButtons {
+-(void)enableStartStatsButtons {
     [_start setAlpha:1.0f];
     [_stats setAlpha:1.0f];
     [_start setEnabled:TRUE];
     [_stats setEnabled:TRUE];
 }
 
+#pragma mark - ui control methods
+
+-(void)refreshLabelData {
+    [self setTitle:_workoutName];
+    [_actionListTable reloadData];
+}
 
 @end

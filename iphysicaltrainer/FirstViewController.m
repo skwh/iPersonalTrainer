@@ -17,7 +17,10 @@
 
 @synthesize tableView = _tableView;
 @synthesize workouts = _workouts;
+@synthesize workoutData = _workoutData;
 @synthesize workoutDict = _workoutDict;
+@synthesize workoutNumber = _workoutNumber;
+@synthesize firstTimeLoad = _firstTimeLoad;
 
 #pragma mark - Base methods
 
@@ -38,9 +41,10 @@
     [self setTitle:@"Workouts"];
     _workoutDict = [[NSMutableDictionary alloc] init];
     _workouts = [[NSMutableArray alloc] init];
+    _firstTimeLoad = YES;
     [self loadWorkouts];
     
-    UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addWorkout)];
+    UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addWorkoutButtonPressed)];
     [[self navigationItem] setRightBarButtonItem:button];
 }
 
@@ -53,7 +57,8 @@
 
 -(void)loadWorkouts {
     NSString *path = [[NSBundle mainBundle] pathForResource:@"workoutList" ofType:@"plist"];
-    _workouts = [NSArray arrayWithContentsOfFile:path];
+    _workoutData = [NSArray arrayWithContentsOfFile:path];
+    _workoutNumber = [_workoutData count];
     [_tableView reloadData];
 }
 -(void)writeToWorkouts:(NSMutableDictionary *)dictionary {
@@ -61,8 +66,8 @@
     NSLog(@"Write to workouts called!");
 }
 
--(BOOL)insertWorkout:(Workout *)workout {
-    [workout associateActionsAndCounts];
+-(BOOL)insertWorkoutIntoDictionaryAndCheck:(Workout *)workout {
+    //[workout associateActionsAndCounts];
     [_workoutDict setObject:workout forKey:[workout name]];
     Workout *inserted = [_workoutDict objectForKey:[workout name]];
     if (inserted == NULL) {
@@ -74,13 +79,14 @@
 #pragma mark - UINavigationController methods
 
 -(IBAction)continueToNextView:(id)sender withWorkoutName:(NSString*)workoutName {
+    _firstTimeLoad = NO;
     workoutViewController *workoutView = [[workoutViewController alloc] initWithNibName:@"workoutViewController" bundle:nil];
     [workoutView setWorkoutName:workoutName];
     [workoutView setDelegate:self];
     [[self navigationController] pushViewController:workoutView animated:YES];
 }
 
--(void)addWorkout {
+-(void)addWorkoutButtonPressed {
     addWorkoutViewController *addWorkoutView = [[addWorkoutViewController alloc] initWithNibName:@"addWorkoutViewController" bundle:nil];
     [[self navigationController] pushViewController:addWorkoutView animated:TRUE];
 }
@@ -88,7 +94,7 @@
 #pragma mark - UITableViewDataSource methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _workouts.count;
+    return _workoutNumber;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -98,17 +104,31 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
     }
-    
-    NSDictionary *workoutInfo = [_workouts objectAtIndex:indexPath.row];
-    Workout *workout = [Workout initWithName:[workoutInfo objectForKey:@"name"] andActions:[workoutInfo objectForKey:@"actions"] andCounts:[workoutInfo objectForKey:@"counts"]];
-    [_workoutDict setObject:workout forKey:[workout name]];
-    BOOL inserted = [self insertWorkout:workout];
-    if (inserted) {
-        cell.textLabel.text = [workout name];
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"Actions: %i",[[workout actionsArray] count]];
+    Workout *newWorkout;
+    if (_firstTimeLoad) {
+        newWorkout = [self firstTimeWorkoutSetup:indexPath.row];
+        //assign the object in the workout dict
+        BOOL inserted = [self insertWorkoutIntoDictionaryAndCheck:newWorkout];
+        //and check if it worked
+        if (inserted) {
+            [_workouts addObject:newWorkout];
+            cell.textLabel.text = [newWorkout name];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"Actions: %i",[[newWorkout actionsArray] count]];
+        } else {
+            cell.textLabel.text = @"Error";
+            cell.textLabel.text = @"Damn bootleg fireworks";
+        }
     } else {
-        cell.textLabel.text = @"Error";
+        newWorkout = [_workouts objectAtIndex:indexPath.row];
+        if (newWorkout != nil) {
+            cell.textLabel.text = [newWorkout name];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"Actions: %i",[[newWorkout actionsArray] count]];
+        } else {
+            cell.textLabel.text = @"Error";
+            cell.textLabel.text = @"Damn bootleg fireworks";
+        }
     }
+    
     return cell;
 }
 
@@ -117,12 +137,54 @@
     [self continueToNextView:nil withWorkoutName:selectedWorkout];
 }
 
-#pragma mark - passWorkout methods
+#pragma mark - Workout setup methods
 
--(void)passWorkout:(Workout *)passedWorkout {
+-(Workout*)firstTimeWorkoutSetup:(NSUInteger)row {
+    NSDictionary *workoutInfo = [_workoutData objectAtIndex:row];
+    return [self setupWorkoutWithInfoDictionary:workoutInfo];
+}
+
+-(Workout*)setupWorkoutWithInfoDictionary:(NSDictionary *)workoutInfo {
+    //find the length of the actions
+    NSInteger workoutActionsLength = [(NSArray*)[workoutInfo objectForKey:@"actions"] count];
+    //create the actions array
+    NSMutableArray *workoutActions = [[NSMutableArray alloc] init];
+    //create an NSMutableArray for counts
+    NSMutableArray *countsArray = [[NSMutableArray alloc] init];
+    //for each item in the array
+    for (int i=0;i<workoutActionsLength;i++) {
+        //get the action array
+        NSArray *actionInfo = [workoutInfo objectForKey:@"actions"];
+        //get the count array
+        NSArray *countInfo = [workoutInfo objectForKey:@"counts"];
+        //get the name from the action array
+        NSString *actionName = [actionInfo objectAtIndex:i];
+        //get the count from the count array
+        NSString *actionCount = [countInfo objectAtIndex:i];
+        //create a new action
+        Action *newAction = [Action actionWithName:actionName andCount:actionCount];
+        //add the action to the workout's action array
+        [workoutActions addObject:newAction];
+        [countsArray addObject:actionCount];
+    }
+    
+    //create the workout with the action array and info from the dict
+    Workout *workout = [Workout initWithName:[workoutInfo objectForKey:@"name"] andActions:workoutActions andCounts:countsArray];
+    //setup the workout's dictionary
+    [workout setActionsDict:[[NSMutableDictionary alloc] init]];
+    //assign the actions to the dictionary
+    for (int i=0;i<workoutActions.count;i++) {
+        Action *currentAction = [workoutActions objectAtIndex:i];
+        [[workout actionsDict] setObject:currentAction forKey:[currentAction name]];
+    }
+    return workout;
+}
+
+#pragma mark - passWorkout protocol methods
+
+-(void)passNewWorkout:(Workout *)passedWorkout {
     [_workouts addObject:passedWorkout];
     [_workoutDict setObject:passedWorkout forKey:[passedWorkout name]];
-    NSLog(@"workouts array after update:%@",[_workouts description]);
 }
 
 -(void)passWorkoutArray:(NSMutableArray *)passedWorkoutArray {
@@ -135,25 +197,84 @@
     [[self tableView] reloadData];
 }
 
--(NSMutableDictionary *)returnWorkoutDictionary {
+-(NSMutableDictionary *)returnMasterWorkoutDictionary {
     return _workoutDict;
 }
 
--(NSMutableArray *)returnWorkoutArray {
+-(NSMutableArray *)returnMasterWorkoutArray {
     return _workouts;
 }
 
--(Workout *)getWorkout:(NSString *)name {
-    return [_workoutDict objectForKey:name];
+-(NSMutableDictionary*)reloadAllWorkouts {
+    //load workoutList.plist
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"workoutList" ofType:@"plist"];
+    NSArray *reloadedWorkoutsInfoArray = [NSArray arrayWithContentsOfFile:path];
+    
+    //create reloaded workouts array
+    NSMutableArray *reloadedWorkoutsArray = [self extractWorkoutFromDataArray:reloadedWorkoutsInfoArray];
+    //create reloaded workouts dict
+    NSMutableDictionary *reloadedWorkoutsDict = [[NSMutableDictionary alloc] initWithCapacity:reloadedWorkoutsArray.count];
+    for (int i=0;i<reloadedWorkoutsArray.count;i++) {
+        Workout *selectedWorkout = [reloadedWorkoutsArray objectAtIndex:i];
+        [reloadedWorkoutsDict setObject:selectedWorkout forKey:[selectedWorkout name]];
+    }
+    //return the reloaded dict because it is more complete and accessable
+    return reloadedWorkoutsDict;
 }
 
--(void)updateWorkout:(Workout *)workout ofAction:(Action *)action {
+-(NSMutableArray*)extractWorkoutFromDataArray:(NSArray *)array {
+    NSMutableArray *final = [[NSMutableArray alloc] init];
+    //for each workout in the array
+    for (int i=0;i<array.count;i++) {
+        //get the dictionary
+        NSDictionary *workoutInfo = [array objectAtIndex:i];
+        //assign it to a new workout object
+        Workout *newWorkout = [Workout initWithName:[workoutInfo objectForKey:@"name"] andActions:[workoutInfo objectForKey:@"actions"] andCounts:[workoutInfo objectForKey:@"counts"]];
+        //add the object to the returned array
+        [final addObject:newWorkout];
+    }
+    //return the array
+    return final;
+}
+
+-(Workout *)workoutFromReloadedWorkouts:(NSString *)workoutNamed {
+    return [[self reloadAllWorkouts] objectForKey:workoutNamed];
+}
+
+-(Workout *)getWorkout:(NSString *)name {
+    Workout *selectedWorkout = [_workoutDict objectForKey:name];
+    return selectedWorkout;
+}
+
+-(NSInteger)getActionNumberForWorkout:(Workout*)workout {
+    return [[workout actionsArray] count];
+}
+
+-(Action*)getAction:(NSString *)actionNamed forWorkout:(Workout *)workout {
+    Action *action = [[workout actionsDict] objectForKey:actionNamed];
+    return action;
+}
+
+-(void)updateWorkout:(Workout *)workout removeAction:(Action *)action {
     //remove action from array
     [[workout actionsArray] removeObject:action];
     //remove action from dict
     [[workout actionsDict] removeObjectForKey:[action name]];
     //remove action from counts
     [[workout countsArray] removeObject:[action count]];
+    //reload the workouts table
+    [_tableView reloadData];
+}
+
+-(void)updateWorkout:(Workout *)workout addAction:(Action *)action {
+    //add action to array
+    [[workout actionsArray] addObject:action];
+    //add action to dict
+    [[workout actionsDict] setObject:action forKey:[action name]];
+    //add action to counts
+    [[workout countsArray] addObject:[action count]];
+    //reload the workouts table
+    [_tableView reloadData];
 }
 
 @end

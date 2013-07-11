@@ -9,6 +9,7 @@
 #import "Action.h"
 
 @implementation Action
+
 @synthesize image;
 @synthesize name;
 @synthesize count;

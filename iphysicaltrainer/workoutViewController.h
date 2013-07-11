@@ -29,17 +29,21 @@
 
 -(IBAction)continueToNextView:(id)sender;
 
--(void)addActionsToWorkout:(NSArray *)newActions;
--(void)removeActionsFromWorkout:(Action *)deletedActions;
--(void)addAction;
-
--(void)refreshLabelData;
--(void)editButtonPressed;
--(void)editButtonDone;
-
--(void)disableButtons;
--(void)enableButtons;
+#pragma mark - Workout data control methods
 
 -(Workout*)getWorkoutFromController;
+
+-(void)addActionToWorkout:(Action *)newAction;
+-(void)removeActionFromWorkout:(Action *)deletedAction;
+
+#pragma mark - UI control methods
+
+-(void)refreshLabelData;
+-(void)addActionButtonPressed;
+-(void)editButtonPressed;
+-(void)editButtonDonePressed;
+
+-(void)disableStartStatsButtons;
+-(void)enableStartStatsButtons;
 
 @end

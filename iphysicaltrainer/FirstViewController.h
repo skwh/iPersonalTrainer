@@ -15,16 +15,21 @@
 
 @optional
 
--(void)passWorkout:(Workout*)passedWorkout;
--(void)passWorkoutArray:(NSMutableArray*)passedWorkoutArray;
--(void)passWorkoutDictionary:(NSMutableDictionary*)passedWorkoutDictionary;
+-(void)passNewWorkout:(Workout *)passedWorkout;
+-(void)passWorkoutArray:(NSMutableArray *)passedWorkoutArray;
+-(void)passWorkoutDictionary:(NSMutableDictionary *)passedWorkoutDictionary;
+-(NSMutableDictionary *)reloadAllWorkouts;
+-(Workout*)workoutFromReloadedWorkouts:(NSString *)workoutNamed;
 
-@required
+//@required
 
--(NSMutableArray*)returnWorkoutArray;
--(NSMutableDictionary*)returnWorkoutDictionary;
+-(NSMutableArray *)returnMasterWorkoutArray;
+-(NSMutableDictionary *)returnMasterWorkoutDictionary;
 -(Workout *)getWorkout:(NSString *)name;
--(void)updateWorkout:(Workout *)workout ofAction:(Action *)action;
+-(void)updateWorkout:(Workout *)workout removeAction:(Action *)action;
+-(void)updateWorkout:(Workout *)workout addAction:(Action *)action;
+-(NSInteger)getActionNumberForWorkout:(Workout *)workout;
+-(Action *)getAction:(NSString *)actionNamed forWorkout:(Workout*)workout;
 
 @end
 
@@ -34,15 +39,31 @@
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property NSMutableArray *workoutData;
 @property NSMutableArray *workouts;
 @property NSMutableDictionary *workoutDict;
+@property NSInteger workoutNumber;
+@property BOOL firstTimeLoad;
+
+#pragma mark - Workout setup methods
+
+-(Workout *)setupWorkoutWithInfoDictionary:(NSDictionary *)workoutInfo;
+
+#pragma mark - UINavigationController methods
 
 -(IBAction)continueToNextView:(id)sender withWorkoutName:(NSString *)name;
 
--(void)loadWorkouts;
--(void)writeToWorkouts:(NSMutableDictionary*)dictionary;
+#pragma mark - Private pass workout protocol methods
 
--(BOOL)insertWorkout:(Workout *)workout withWorkoutData:(Workout *)workout;
--(void)addWorkout;
+-(NSMutableArray *)extractWorkoutFromDataArray:(NSArray *)array;
+
+#pragma mark - IO methods
+
+-(void)loadWorkouts;
+-(void)writeToWorkouts:(NSMutableDictionary *)dictionary;
+
+#pragma mark - UI control methods
+
+-(void)addWorkoutButtonPressed;
 
 @end
