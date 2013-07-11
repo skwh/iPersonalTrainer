@@ -15,6 +15,8 @@
 
 @implementation FirstViewController
 
+#pragma mark - Synthesizers
+
 @synthesize tableView = _tableView;
 @synthesize workouts = _workouts;
 @synthesize workoutData = _workoutData;
@@ -44,7 +46,7 @@
     _firstTimeLoad = YES;
     [self loadWorkouts];
     
-    UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addWorkoutButtonPressed)];
+    UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editWorkoutButtonPressed)];
     [[self navigationItem] setRightBarButtonItem:button];
 }
 
@@ -53,7 +55,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-#pragma mark - workout loading methods
+#pragma mark - workout data methods
 
 -(void)loadWorkouts {
     NSString *path = [[NSBundle mainBundle] pathForResource:@"workoutList" ofType:@"plist"];
@@ -76,6 +78,14 @@
     return TRUE;
 }
 
+-(void)addWorkoutToMasterWorkouts:(Workout *)workout {
+    //add workout to dict
+    [_workoutDict setObject:workout forKey:[workout name]];
+    //add workout to array
+    [_workouts addObject:workout];
+    _workoutNumber++;
+}
+
 #pragma mark - UINavigationController methods
 
 -(IBAction)continueToNextView:(id)sender withWorkoutName:(NSString*)workoutName {
@@ -86,7 +96,7 @@
     [[self navigationController] pushViewController:workoutView animated:YES];
 }
 
--(void)addWorkoutButtonPressed {
+-(void)editWorkoutButtonPressed {
     addWorkoutViewController *addWorkoutView = [[addWorkoutViewController alloc] initWithNibName:@"addWorkoutViewController" bundle:nil];
     [[self navigationController] pushViewController:addWorkoutView animated:TRUE];
 }
@@ -162,7 +172,7 @@
         //get the count from the count array
         NSString *actionCount = [countInfo objectAtIndex:i];
         //create a new action
-        Action *newAction = [Action actionWithName:actionName andCount:actionCount];
+        Action *newAction = [Action actionWithName:actionName andCount:actionCount andImage:[UIImage imageNamed:@"first.png"]];
         //add the action to the workout's action array
         [workoutActions addObject:newAction];
         [countsArray addObject:actionCount];
@@ -181,65 +191,6 @@
 }
 
 #pragma mark - passWorkout protocol methods
-
--(void)passNewWorkout:(Workout *)passedWorkout {
-    [_workouts addObject:passedWorkout];
-    [_workoutDict setObject:passedWorkout forKey:[passedWorkout name]];
-}
-
--(void)passWorkoutArray:(NSMutableArray *)passedWorkoutArray {
-    _workouts = passedWorkoutArray;
-    [[self tableView] reloadData];
-}
-
--(void)passWorkoutDictionary:(NSMutableDictionary *)passedWorkoutDictionary {
-    _workoutDict = passedWorkoutDictionary;
-    [[self tableView] reloadData];
-}
-
--(NSMutableDictionary *)returnMasterWorkoutDictionary {
-    return _workoutDict;
-}
-
--(NSMutableArray *)returnMasterWorkoutArray {
-    return _workouts;
-}
-
--(NSMutableDictionary*)reloadAllWorkouts {
-    //load workoutList.plist
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"workoutList" ofType:@"plist"];
-    NSArray *reloadedWorkoutsInfoArray = [NSArray arrayWithContentsOfFile:path];
-    
-    //create reloaded workouts array
-    NSMutableArray *reloadedWorkoutsArray = [self extractWorkoutFromDataArray:reloadedWorkoutsInfoArray];
-    //create reloaded workouts dict
-    NSMutableDictionary *reloadedWorkoutsDict = [[NSMutableDictionary alloc] initWithCapacity:reloadedWorkoutsArray.count];
-    for (int i=0;i<reloadedWorkoutsArray.count;i++) {
-        Workout *selectedWorkout = [reloadedWorkoutsArray objectAtIndex:i];
-        [reloadedWorkoutsDict setObject:selectedWorkout forKey:[selectedWorkout name]];
-    }
-    //return the reloaded dict because it is more complete and accessable
-    return reloadedWorkoutsDict;
-}
-
--(NSMutableArray*)extractWorkoutFromDataArray:(NSArray *)array {
-    NSMutableArray *final = [[NSMutableArray alloc] init];
-    //for each workout in the array
-    for (int i=0;i<array.count;i++) {
-        //get the dictionary
-        NSDictionary *workoutInfo = [array objectAtIndex:i];
-        //assign it to a new workout object
-        Workout *newWorkout = [Workout initWithName:[workoutInfo objectForKey:@"name"] andActions:[workoutInfo objectForKey:@"actions"] andCounts:[workoutInfo objectForKey:@"counts"]];
-        //add the object to the returned array
-        [final addObject:newWorkout];
-    }
-    //return the array
-    return final;
-}
-
--(Workout *)workoutFromReloadedWorkouts:(NSString *)workoutNamed {
-    return [[self reloadAllWorkouts] objectForKey:workoutNamed];
-}
 
 -(Workout *)getWorkout:(NSString *)name {
     Workout *selectedWorkout = [_workoutDict objectForKey:name];
@@ -274,6 +225,13 @@
     //add action to counts
     [[workout countsArray] addObject:[action count]];
     //reload the workouts table
+    [_tableView reloadData];
+}
+
+-(void)updateWorkout:(Workout *)workout updateAction:(Action *)action {
+    //this is probably dumb
+    [self updateWorkout:workout removeAction:action];
+    [self updateWorkout:workout addAction:action];
     [_tableView reloadData];
 }
 

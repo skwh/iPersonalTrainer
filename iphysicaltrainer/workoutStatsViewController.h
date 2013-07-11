@@ -10,4 +10,6 @@
 
 @interface workoutStatsViewController : UIViewController
 
+@property NSString *workoutNamed;
+
 @end

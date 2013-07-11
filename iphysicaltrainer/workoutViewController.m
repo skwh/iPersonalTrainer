@@ -19,6 +19,7 @@
 @synthesize start = _start;
 @synthesize stats = _stats;
 @synthesize workoutName = _workoutName;
+@synthesize edit = _edit;
 
 #pragma mark - Default methods
 
@@ -35,6 +36,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [self setTitle:_workoutName];
     UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editButtonPressed)];
     [[self navigationItem] setRightBarButtonItem:button];
 }
@@ -46,7 +48,6 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated {
-    [self setTitle:_workoutName];
     [_actionListTable reloadData];
 }
 
@@ -57,18 +58,22 @@
     if (sender == _stats) {
         //create a new stats controller and push it
         workoutStatsViewController *statsController = [[workoutStatsViewController alloc] initWithNibName:@"workoutStatsViewController" bundle:nil];
+        [statsController setWorkoutNamed:_workoutName];
         [[self navigationController] pushViewController:statsController animated:TRUE];
     } else if (sender == _start) {
         //create a new start controller and push it
         workoutProgress *progressController = [[workoutProgress alloc] initWithNibName:@"workoutProgress" bundle:nil];
+        [progressController setWorkoutNamed:_workoutName];
         [[self navigationController] pushViewController:progressController animated:TRUE];
     }
 }
 
 -(void)addActionButtonPressed {
-    //create the addController and push it
-    addActionViewController *addController = [[addActionViewController alloc] initWithNibName:@"addActionViewController" bundle:nil];
-    [[self navigationController] pushViewController:addController animated:TRUE];
+    //create action and add it to the tableView
+    UIImage *defaultImage = [UIImage imageNamed:@"first.png"];
+    Action *newAction = [Action actionWithName:@"New Action" andCount:@"0" andImage:defaultImage];
+    [[self delegate] updateWorkout:[self getWorkoutFromController] addAction:newAction];
+    [_actionListTable reloadData];
 }
 
 #pragma mark - UITableView methods
@@ -83,6 +88,7 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
     }
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     //get current action from the workout from the workoutcontroller
     Action *currentAction = [[[self getWorkoutFromController] actionsArray] objectAtIndex:indexPath.row];
     //check if the action retrieved is valid
@@ -115,6 +121,19 @@
     return UITableViewCellEditingStyleDelete;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    //get the action selected
+    Action *selectedAction = [[[self getWorkoutFromController] actionsArray] objectAtIndex:indexPath.row];
+    //create action edit controller
+    actionEditViewController *actionEdit = [[actionEditViewController alloc] initWithNibName:@"actionEditViewController" bundle:nil];
+    //set the selected action name
+    [actionEdit setActionNamed:[selectedAction name]];
+    //set the action's delegate
+    [actionEdit setDelegate:self];
+    //push the controller onto the stack
+    [[self navigationController] pushViewController:actionEdit animated:YES];
+}
+
 #pragma mark - Workout data methods
 
 -(Workout *)getWorkoutFromController {
@@ -135,8 +154,10 @@
 #pragma mark - edit mode methods
 
 -(void)editButtonPressed {
+    //set the title to show action editing
+    [self setTitle:@"Edit Actions"];
     //set the table to editing mode
-    [_actionListTable setEditing:TRUE];
+    [_actionListTable setEditing:YES];
     //create and push the add button
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addActionButtonPressed)];
     [[self navigationItem] setLeftBarButtonItem:addButton animated:TRUE];
@@ -148,10 +169,12 @@
 }
 
 -(void)editButtonDonePressed {
+    //reset the title
+    [self setTitle:_workoutName];
     //set the table to normal mode
     [_actionListTable setEditing:FALSE];
     //remove the add button
-    [[self navigationItem] setLeftBarButtonItem:nil animated:NO];
+    [[self navigationItem] setLeftBarButtonItem:nil animated:YES];
     //revert to the edit button and push it
     editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editButtonPressed)];
     [[self navigationItem] setRightBarButtonItem:editButton];
@@ -178,6 +201,20 @@
 -(void)refreshLabelData {
     [self setTitle:_workoutName];
     [_actionListTable reloadData];
+}
+
+#pragma mark - passAction methods
+
+-(Action*)getActionForName:(NSString *)actionNamed {
+    return [[[self getWorkoutFromController] actionsDict] objectForKey:actionNamed];
+}
+
+-(void)updateAction:(Action *)action {
+    [[self delegate] updateWorkout:[self getWorkoutFromController] updateAction:action];
+}
+
+-(void)updateActionWithString:(NSString *)actionNamed {
+    [[self delegate] updateWorkout:[self getWorkoutFromController] updateAction:[self getActionForName:actionNamed]];
 }
 
 @end

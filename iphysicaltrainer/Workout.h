@@ -17,6 +17,7 @@
 @property NSMutableDictionary *actionsDict;
 
 -(void)associateActionsAndCounts;
+-(void)addAction:(Action*)action;
 
 +(Workout *)initWithName:(NSString *)name;
 +(Workout *)initWithName:(NSString *)name andActions:(NSMutableArray*)actions;

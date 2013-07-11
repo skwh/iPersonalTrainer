@@ -18,16 +18,17 @@
 -(void)passNewWorkout:(Workout *)passedWorkout;
 -(void)passWorkoutArray:(NSMutableArray *)passedWorkoutArray;
 -(void)passWorkoutDictionary:(NSMutableDictionary *)passedWorkoutDictionary;
+-(NSMutableArray *)returnMasterWorkoutArray;
+-(NSMutableDictionary *)returnMasterWorkoutDictionary;
 -(NSMutableDictionary *)reloadAllWorkouts;
 -(Workout*)workoutFromReloadedWorkouts:(NSString *)workoutNamed;
 
-//@required
+@required
 
--(NSMutableArray *)returnMasterWorkoutArray;
--(NSMutableDictionary *)returnMasterWorkoutDictionary;
 -(Workout *)getWorkout:(NSString *)name;
 -(void)updateWorkout:(Workout *)workout removeAction:(Action *)action;
 -(void)updateWorkout:(Workout *)workout addAction:(Action *)action;
+-(void)updateWorkout:(Workout *)workout updateAction:(Action *)action;
 -(NSInteger)getActionNumberForWorkout:(Workout *)workout;
 -(Action *)getAction:(NSString *)actionNamed forWorkout:(Workout*)workout;
 
@@ -53,10 +54,6 @@
 
 -(IBAction)continueToNextView:(id)sender withWorkoutName:(NSString *)name;
 
-#pragma mark - Private pass workout protocol methods
-
--(NSMutableArray *)extractWorkoutFromDataArray:(NSArray *)array;
-
 #pragma mark - IO methods
 
 -(void)loadWorkouts;
@@ -64,6 +61,6 @@
 
 #pragma mark - UI control methods
 
--(void)addWorkoutButtonPressed;
+-(void)editWorkoutButtonPressed;
 
 @end

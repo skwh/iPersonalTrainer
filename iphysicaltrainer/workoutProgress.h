@@ -10,4 +10,6 @@
 
 @interface workoutProgress : UIViewController
 
+@property NSString *workoutNamed;
+
 @end

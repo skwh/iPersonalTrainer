@@ -14,6 +14,8 @@
 
 @implementation workoutStatsViewController
 
+@synthesize workoutNamed = _workoutNamed;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -27,7 +29,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self setTitle:@"Workout Stats"];
+    NSString *fullTitle = [_workoutNamed stringByAppendingString:@" Stats"];
+    [self setTitle:fullTitle];
 }
 
 - (void)didReceiveMemoryWarning
@@ -35,5 +38,4 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 @end

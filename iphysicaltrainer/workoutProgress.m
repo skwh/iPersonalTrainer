@@ -14,6 +14,8 @@
 
 @implementation workoutProgress
 
+@synthesize workoutNamed = _workoutNamed;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -27,7 +29,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self setTitle:@"Start Workout"];
+    NSString *fullTitle = [@"Start Workout - " stringByAppendingString:_workoutNamed];
+    [self setTitle:fullTitle];
 }
 
 - (void)didReceiveMemoryWarning

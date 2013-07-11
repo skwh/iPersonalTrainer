@@ -1,4 +1,3 @@
-//
 //  Workout.m
 //  navigationControllerTest
 //
@@ -32,6 +31,11 @@
     }
 }
 
+-(void)addAction:(Action*)action {
+    [_actionsArray addObject:action];
+    [_actionsDict setObject:action forKey:[action name]];
+    [_countsArray addObject:[action count]];
+}
 
 #pragma mark - Factory methods
 

@@ -58,10 +58,6 @@
 		1894EEE9178B626500EECEC3 /* actionEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1894EEE6178B626500EECEC3 /* actionEditViewController.m */; };
 		1894EEEA178B626500EECEC3 /* actionEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1894EEE7178B626500EECEC3 /* actionEditViewController.xib */; };
 		1894EEEB178B626500EECEC3 /* actionEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1894EEE7178B626500EECEC3 /* actionEditViewController.xib */; };
-		1894EEEF178B628900EECEC3 /* addActionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1894EEED178B628900EECEC3 /* addActionViewController.m */; };
-		1894EEF0178B628900EECEC3 /* addActionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1894EEED178B628900EECEC3 /* addActionViewController.m */; };
-		1894EEF1178B628900EECEC3 /* addActionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1894EEEE178B628900EECEC3 /* addActionViewController.xib */; };
-		1894EEF2178B628900EECEC3 /* addActionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1894EEEE178B628900EECEC3 /* addActionViewController.xib */; };
 		1894EEF5178B62AF00EECEC3 /* Action.m in Sources */ = {isa = PBXBuildFile; fileRef = 1894EEF4178B62AF00EECEC3 /* Action.m */; };
 		1894EEF6178B62AF00EECEC3 /* Action.m in Sources */ = {isa = PBXBuildFile; fileRef = 1894EEF4178B62AF00EECEC3 /* Action.m */; };
 		18D4B819178C6886008175A2 /* Workout.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D4B818178C6886008175A2 /* Workout.m */; };
@@ -132,9 +128,6 @@
 		1894EEE5178B626500EECEC3 /* actionEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = actionEditViewController.h; sourceTree = "<group>"; };
 		1894EEE6178B626500EECEC3 /* actionEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = actionEditViewController.m; sourceTree = "<group>"; };
 		1894EEE7178B626500EECEC3 /* actionEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = actionEditViewController.xib; sourceTree = "<group>"; };
-		1894EEEC178B628800EECEC3 /* addActionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addActionViewController.h; sourceTree = "<group>"; };
-		1894EEED178B628900EECEC3 /* addActionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addActionViewController.m; sourceTree = "<group>"; };
-		1894EEEE178B628900EECEC3 /* addActionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = addActionViewController.xib; sourceTree = "<group>"; };
 		1894EEF3178B62AE00EECEC3 /* Action.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Action.h; sourceTree = "<group>"; };
 		1894EEF4178B62AF00EECEC3 /* Action.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Action.m; sourceTree = "<group>"; };
 		18D4B817178C6886008175A2 /* Workout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Workout.h; sourceTree = "<group>"; };
@@ -284,9 +277,6 @@
 				1894EEE5178B626500EECEC3 /* actionEditViewController.h */,
 				1894EEE6178B626500EECEC3 /* actionEditViewController.m */,
 				1894EEE7178B626500EECEC3 /* actionEditViewController.xib */,
-				1894EEEC178B628800EECEC3 /* addActionViewController.h */,
-				1894EEED178B628900EECEC3 /* addActionViewController.m */,
-				1894EEEE178B628900EECEC3 /* addActionViewController.xib */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -378,7 +368,6 @@
 				1894EEDC178B4D8900EECEC3 /* workoutStatsViewController.xib in Resources */,
 				1894EEE3178B5E2300EECEC3 /* addWorkoutViewController.xib in Resources */,
 				1894EEEA178B626500EECEC3 /* actionEditViewController.xib in Resources */,
-				1894EEF1178B628900EECEC3 /* addActionViewController.xib in Resources */,
 				18D4B81C178C7A52008175A2 /* workoutList.plist in Resources */,
 				18D4B85D178CD42C008175A2 /* workoutList-edit.plist in Resources */,
 				188DD639178F2CE00041B541 /* LargeFirstViewController.xib in Resources */,
@@ -398,7 +387,6 @@
 				1894EEDD178B4D8900EECEC3 /* workoutStatsViewController.xib in Resources */,
 				1894EEE4178B5E2300EECEC3 /* addWorkoutViewController.xib in Resources */,
 				1894EEEB178B626500EECEC3 /* actionEditViewController.xib in Resources */,
-				1894EEF2178B628900EECEC3 /* addActionViewController.xib in Resources */,
 				18D4B81D178C7A52008175A2 /* workoutList.plist in Resources */,
 				18D4B85E178CD42C008175A2 /* workoutList-edit.plist in Resources */,
 				188DD63C178F43460041B541 /* LargeSecondViewController.xib in Resources */,
@@ -438,7 +426,6 @@
 				1894EEDA178B4D8900EECEC3 /* workoutStatsViewController.m in Sources */,
 				1894EEE1178B5E2300EECEC3 /* addWorkoutViewController.m in Sources */,
 				1894EEE8178B626500EECEC3 /* actionEditViewController.m in Sources */,
-				1894EEEF178B628900EECEC3 /* addActionViewController.m in Sources */,
 				1894EEF5178B62AF00EECEC3 /* Action.m in Sources */,
 				18D4B819178C6886008175A2 /* Workout.m in Sources */,
 			);
@@ -454,7 +441,6 @@
 				1894EEDB178B4D8900EECEC3 /* workoutStatsViewController.m in Sources */,
 				1894EEE2178B5E2300EECEC3 /* addWorkoutViewController.m in Sources */,
 				1894EEE9178B626500EECEC3 /* actionEditViewController.m in Sources */,
-				1894EEF0178B628900EECEC3 /* addActionViewController.m in Sources */,
 				1894EEF6178B62AF00EECEC3 /* Action.m in Sources */,
 				18D4B81A178C6886008175A2 /* Workout.m in Sources */,
 			);

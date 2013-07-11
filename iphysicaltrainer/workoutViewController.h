@@ -11,11 +11,20 @@
 #import "workoutStatsViewController.h"
 #import "Workout.h"
 #import "Action.h"
-#import "addActionViewController.h"
-#import "actionEditViewController.h"
 #import "FirstViewController.h"
 
-@interface workoutViewController : UIViewController <UITableViewDataSource,UITableViewDelegate> {
+@protocol passAction <NSObject>
+
+@required
+-(Action*)getActionForName:(NSString *)actionNamed;
+-(void)updateAction:(Action*)action;
+-(void)updateActionWithString:(NSString*)actionNamed;
+
+@end
+
+#import "actionEditViewController.h"
+
+@interface workoutViewController : UIViewController <UITableViewDataSource,UITableViewDelegate,passAction> {
     UIBarButtonItem *editButton;
     //UIBarButtonItem *addButton;
     id <passWorkout> delegate;
@@ -25,6 +34,7 @@
 @property IBOutlet UITableView *actionListTable;
 @property IBOutlet UIButton *start;
 @property IBOutlet UIButton *stats;
+@property IBOutlet UIButton *edit;
 @property (retain) id delegate;
 
 -(IBAction)continueToNextView:(id)sender;

@@ -18,8 +18,6 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    NSLog(@"Iphone %f ",[[UIScreen mainScreen] bounds].size.height);
-    
     // Override point for customization after application launch.
     UIViewController *viewController1;
     UIViewController *viewController2;
