@@ -62,5 +62,7 @@
 #pragma mark - UI control methods
 
 -(void)editWorkoutButtonPressed;
+-(void)editWorkoutButtonDone;
+-(void)addWorkoutButtonPressed;
 
 @end

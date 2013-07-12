@@ -89,7 +89,7 @@
 #pragma mark - UINavigationController methods
 
 -(IBAction)continueToNextView:(id)sender withWorkoutName:(NSString*)workoutName {
-    _firstTimeLoad = NO;
+    if (_firstTimeLoad) _firstTimeLoad = NO;
     workoutViewController *workoutView = [[workoutViewController alloc] initWithNibName:@"workoutViewController" bundle:nil];
     [workoutView setWorkoutName:workoutName];
     [workoutView setDelegate:self];
@@ -97,8 +97,43 @@
 }
 
 -(void)editWorkoutButtonPressed {
-    addWorkoutViewController *addWorkoutView = [[addWorkoutViewController alloc] initWithNibName:@"addWorkoutViewController" bundle:nil];
-    [[self navigationController] pushViewController:addWorkoutView animated:TRUE];
+    //set the tableview to edit mode
+    [_tableView setEditing:YES];
+    //create the add button
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addWorkoutButtonPressed)];
+    [[self navigationItem] setLeftBarButtonItem:addButton];
+    //change the edit button to done
+    editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(editWorkoutButtonDone)];
+    [[self navigationItem] setRightBarButtonItem:editButton];
+    //set the title
+    [self setTitle:@"Edit Workouts"];
+}
+
+-(void)editWorkoutButtonDone {
+    //set the tableview to no edit mode
+    [_tableView setEditing:NO];
+    //remove the add button
+    [[self navigationItem] setLeftBarButtonItem:nil];
+    //reset the edit button
+    editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editWorkoutButtonDone)];
+    [[self navigationItem] setRightBarButtonItem:editButton];
+    //reset the title
+    [self setTitle:@"Workouts"];
+    
+}
+
+-(void)addWorkoutButtonPressed {
+    //check if first time load is true
+    if (_firstTimeLoad) _firstTimeLoad = NO;
+    //create actions and counts arrays for a new workout
+    NSMutableArray *newActions = [[NSMutableArray alloc] init];
+    NSMutableArray *newCounts = [[NSMutableArray alloc] init];
+    //create a new blank workout
+    Workout *newWorkout = [Workout initWithName:@"New Workout" andActions:newCounts andCounts:newActions];
+    //add the workout to the array
+    [self addWorkoutToMasterWorkouts:newWorkout];
+    //refresh the table
+    [_tableView reloadData];
 }
 
 #pragma mark - UITableViewDataSource methods

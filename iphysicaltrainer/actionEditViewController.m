@@ -34,12 +34,24 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+}
+
+-(void)viewWillAppear:(BOOL)animated {
     NSString *fullTitle = [@"Edit Action - " stringByAppendingString:_actionNamed];
     [self setTitle:fullTitle];
     [_nameEdit setText:_actionNamed];
-    [_countEdit setText:[[self getActionFromController] count]];
+    NSString *count = [NSString stringWithFormat:@"%@",[[self getActionFromController] count]];
+    [_countEdit setText:count];
     UIImage *actionSetImage = [[self getActionFromController] image];
     [_actionImage setImage:actionSetImage];
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    //save the settings, even if they weren't changed
+    NSString *name = [_nameEdit text];
+    NSString *count = [_countEdit text];
+    [[self delegate] updateAction:[self getActionFromController] withName:name];
+    [[self delegate] updateAction:[self getActionFromController] withCount:count];
 }
 
 - (void)didReceiveMemoryWarning
@@ -54,6 +66,7 @@
 
 -(IBAction)nameIsDoneEditing:(id)sender {
     NSString *newName = [_nameEdit text];
+    [self setTitle:[@"Edit Action - " stringByAppendingString:newName]];
     [[self getActionFromController] setName:newName];
 }
 

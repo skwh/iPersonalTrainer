@@ -206,7 +206,9 @@
 #pragma mark - passAction methods
 
 -(Action*)getActionForName:(NSString *)actionNamed {
-    return [[[self getWorkoutFromController] actionsDict] objectForKey:actionNamed];
+    NSMutableDictionary *actionsDictionary = [[self getWorkoutFromController] actionsDict];
+    Action *selectedAction = [actionsDictionary objectForKey:actionNamed];
+    return selectedAction;
 }
 
 -(void)updateAction:(Action *)action {
@@ -215,6 +217,16 @@
 
 -(void)updateActionWithString:(NSString *)actionNamed {
     [[self delegate] updateWorkout:[self getWorkoutFromController] updateAction:[self getActionForName:actionNamed]];
+}
+
+-(void)updateAction:(Action *)action withCount:(NSString *)newCount {
+    [action setCount:newCount];
+    [[self delegate] updateWorkout:[self getWorkoutFromController] updateAction:action];
+}
+
+-(void)updateAction:(Action *)action withName:(NSString *)newName {
+    [action setName:newName];
+    [[self delegate] updateWorkout:[self getWorkoutFromController] updateAction:action];
 }
 
 @end

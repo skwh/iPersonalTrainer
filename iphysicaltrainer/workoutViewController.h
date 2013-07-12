@@ -19,6 +19,8 @@
 -(Action*)getActionForName:(NSString *)actionNamed;
 -(void)updateAction:(Action*)action;
 -(void)updateActionWithString:(NSString*)actionNamed;
+-(void)updateAction:(Action*)action withName:(NSString *)newName;
+-(void)updateAction:(Action *)action withCount:(NSString *)newCount;
 
 @end
 
