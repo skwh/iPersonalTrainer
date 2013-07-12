@@ -125,15 +125,30 @@
 -(void)addWorkoutButtonPressed {
     //check if first time load is true
     if (_firstTimeLoad) _firstTimeLoad = NO;
-    //create actions and counts arrays for a new workout
-    NSMutableArray *newActions = [[NSMutableArray alloc] init];
-    NSMutableArray *newCounts = [[NSMutableArray alloc] init];
-    //create a new blank workout
-    Workout *newWorkout = [Workout initWithName:@"New Workout" andActions:newCounts andCounts:newActions];
-    //add the workout to the array
-    [self addWorkoutToMasterWorkouts:newWorkout];
-    //refresh the table
-    [_tableView reloadData];
+    //create an alert view
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"New Workout" message:@"Please enter the new workout title." delegate:self cancelButtonTitle:@"continue" otherButtonTitles:nil];
+    //set some styles
+    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    UITextField *textField = [alert textFieldAtIndex:0];
+    textField.placeholder = @"Workout title";
+    [alert show];
+    //data will be passed to alertView:clickedButtonAtIndex
+}
+
+#pragma mark - UIAlertViewDelegate methods
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+        //create actions and counts arrays for a new workout
+        NSMutableArray *newActions = [[NSMutableArray alloc] init];
+        NSMutableArray *newCounts = [[NSMutableArray alloc] init];
+        //create a new blank workout
+        Workout *newWorkout = [Workout initWithName:[[alertView textFieldAtIndex:buttonIndex] text] andActions:newCounts andCounts:newActions];
+        //add the workout to the array
+        [self addWorkoutToMasterWorkouts:newWorkout];
+        //refresh the table
+        [_tableView reloadData];
+    }
 }
 
 #pragma mark - UITableViewDataSource methods

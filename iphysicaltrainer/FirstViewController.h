@@ -35,7 +35,7 @@
 @end
 
 
-@interface FirstViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, passWorkout> {
+@interface FirstViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, passWorkout, UIAlertViewDelegate> {
     UIBarButtonItem *editButton;
 }
 
