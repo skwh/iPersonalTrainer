@@ -127,7 +127,7 @@
     //create action edit controller
     actionEditViewController *actionEdit = [[actionEditViewController alloc] initWithNibName:@"actionEditViewController" bundle:nil];
     //set the selected action name
-    [actionEdit setActionNamed:[selectedAction name]];
+    [actionEdit setKeptAction:selectedAction];
     //set the action's delegate
     [actionEdit setDelegate:self];
     //push the controller onto the stack

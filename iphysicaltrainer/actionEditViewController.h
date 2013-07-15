@@ -9,12 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "workoutViewController.h"
 
-@interface actionEditViewController : UIViewController {
+@interface actionEditViewController : UIViewController <UIImagePickerControllerDelegate> {
     id <passAction> delegate;
 }
 
 @property NSString *actionNamed;
 
+@property Action *keptAction;
 @property IBOutlet UITextField *nameEdit;
 @property IBOutlet UITextField *countEdit;
 @property IBOutlet UIButton *selectImage;
@@ -23,7 +24,5 @@
 
 -(IBAction)nameIsDoneEditing:(id)sender;
 -(IBAction)countIsDoneEditing:(id)sender;
-
--(Action*)getActionFromController;
 
 @end

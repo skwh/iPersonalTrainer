@@ -86,6 +86,32 @@
     _workoutNumber++;
 }
 
+-(BOOL)doesWorkoutExist:(Workout*)workout {
+    NSArray *staticWorkoutArray = [_workouts copy];
+    return [staticWorkoutArray containsObject:workout];
+}
+
+-(BOOL)doesWorkoutExistWithName:(NSString *)name {
+    Workout *selectedWorkout = [_workoutDict objectForKey:name];
+    if (selectedWorkout == nil) {
+        return false;
+    }
+    return true;
+}
+
+-(void)removeWorkout:(Workout*)workout {
+    [_workouts removeObject:workout];
+    [_workoutDict removeObjectForKey:[workout name]];
+    _workoutNumber--;
+}
+
+-(void)removeWorkoutWithName:(NSString *)name {
+    Workout *removingWorkout = [_workoutDict objectForKey:name];
+    [_workouts removeObject:removingWorkout];
+    [_workoutDict removeObjectForKey:name];
+    _workoutNumber--;
+}
+
 #pragma mark - UINavigationController methods
 
 -(IBAction)continueToNextView:(id)sender withWorkoutName:(NSString*)workoutName {
@@ -115,7 +141,7 @@
     //remove the add button
     [[self navigationItem] setLeftBarButtonItem:nil];
     //reset the edit button
-    editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editWorkoutButtonDone)];
+    editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editWorkoutButtonPressed)];
     [[self navigationItem] setRightBarButtonItem:editButton];
     //reset the title
     [self setTitle:@"Workouts"];
@@ -126,7 +152,7 @@
     //check if first time load is true
     if (_firstTimeLoad) _firstTimeLoad = NO;
     //create an alert view
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"New Workout" message:@"Please enter the new workout title." delegate:self cancelButtonTitle:@"continue" otherButtonTitles:nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"New Workout" message:@"Please enter the new workout title." delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:nil];
     //set some styles
     alert.alertViewStyle = UIAlertViewStylePlainTextInput;
     UITextField *textField = [alert textFieldAtIndex:0];
@@ -138,16 +164,32 @@
 #pragma mark - UIAlertViewDelegate methods
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 0) {
+    if ([alertView.title isEqual: @"New Workout"]) {
+        //get the entered name
+        NSString *input = [[alertView textFieldAtIndex:buttonIndex] text];
+        NSString *workoutNamed = [input stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        //make sure the workout does not already exist
+        if ([self doesWorkoutExistWithName:workoutNamed] || workoutNamed == nil) {
+            //if the workout does already exist, create an alert message
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"That workout already exists. Please enter another name." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+            //there is no text input
+            alert.alertViewStyle = UIAlertViewStyleDefault;
+            //show the alert
+            [alert show];
+            return;
+        }
         //create actions and counts arrays for a new workout
         NSMutableArray *newActions = [[NSMutableArray alloc] init];
         NSMutableArray *newCounts = [[NSMutableArray alloc] init];
         //create a new blank workout
-        Workout *newWorkout = [Workout initWithName:[[alertView textFieldAtIndex:buttonIndex] text] andActions:newCounts andCounts:newActions];
+        Workout *newWorkout = [Workout initWithName:workoutNamed andActions:newCounts andCounts:newActions];
         //add the workout to the array
         [self addWorkoutToMasterWorkouts:newWorkout];
         //refresh the table
         [_tableView reloadData];
+    } else if ([alertView.title isEqualToString:@"Oops"]) {
+        //if the alert that is presented was the error message, go back to the new workout alert
+        [self addWorkoutButtonPressed];
     }
 }
 
@@ -195,6 +237,21 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *selectedWorkout = [_tableView cellForRowAtIndexPath:indexPath].textLabel.text;
     [self continueToNextView:nil withWorkoutName:selectedWorkout];
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    //tell the tableview to begin updating
+    [tableView beginUpdates];
+    //get the cell text at index
+    NSString *cellText = [tableView cellForRowAtIndexPath:indexPath].textLabel.text;
+    //find the action being deleted based on the row selected
+    Workout *workoutDeleted = [self getWorkout:cellText];
+    //remove the actions with the workout data methods
+    [self removeWorkout:workoutDeleted];
+    //tell the table to delete the row
+    [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    //end the updates
+    [tableView endUpdates];
 }
 
 #pragma mark - Workout setup methods
