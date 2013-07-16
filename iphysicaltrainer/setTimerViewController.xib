@@ -10004,15 +10004,6 @@ AAEAAQABA</bytes>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">datePickerUpdated:</string>
-						<reference key="source" ref="94048065"/>
-						<reference key="destination" ref="372490531"/>
-						<int key="IBEventType">13</int>
-					</object>
-					<int key="connectionID">32</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">done:</string>
 						<reference key="source" ref="194998766"/>
 						<reference key="destination" ref="372490531"/>
@@ -10263,20 +10254,17 @@ AAEAAQABA</bytes>
 				<object class="IBPartialClassDescription">
 					<string key="className">setTimerViewController</string>
 					<string key="superclassName">UIViewController</string>
-					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="datePickerUpdated:">id</string>
-						<string key="done:">id</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="datePickerUpdated:">
-							<string key="name">datePickerUpdated:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="done:">
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">done:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">done:</string>
+						<object class="IBActionInfo" key="NS.object.0">
 							<string key="name">done:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-					</dictionary>
+					</object>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="doneButton">UIButton</string>
 						<string key="picker">UIDatePicker</string>

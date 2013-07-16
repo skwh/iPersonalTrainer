@@ -1,21 +1,18 @@
 //
-//  setTimerViewController.m
+//  settingsViewController.m
 //  iPersonalTrainer
 //
-//  Created by Coshx on 7/15/13.
+//  Created by Coshx on 7/16/13.
 //  Copyright (c) 2013 skwh. All rights reserved.
 //
 
-#import "setTimerViewController.h"
+#import "settingsViewController.h"
 
-@interface setTimerViewController ()
-
-@property IBOutlet UIDatePicker *picker;
-@property IBOutlet UIButton *doneButton;
+@interface settingsViewController ()
 
 @end
 
-@implementation setTimerViewController
+@implementation settingsViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,11 +36,11 @@
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
-    [[self delegate] recievePickerData:[_picker countDownDuration]];
+    
 }
 
 -(IBAction)done:(id)sender {
-    [[self delegate] setTimerViewControllerDidFinish:self];
+    
 }
 
 @end

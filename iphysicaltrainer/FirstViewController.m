@@ -23,6 +23,7 @@
 @synthesize workoutDict = _workoutDict;
 @synthesize workoutNumber = _workoutNumber;
 @synthesize firstTimeLoad = _firstTimeLoad;
+@synthesize settings = _settings;
 
 #pragma mark - Base methods
 
@@ -48,6 +49,8 @@
     
     UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editWorkoutButtonPressed)];
     [[self navigationItem] setRightBarButtonItem:button];
+    UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action:@selector(settingsButtonPressed)];
+    [[self navigationItem] setLeftBarButtonItem:settingsButton];
 }
 
 - (void)didReceiveMemoryWarning
@@ -122,6 +125,8 @@
     [[self navigationController] pushViewController:workoutView animated:YES];
 }
 
+#pragma mark - UI Control Methods
+
 -(void)editWorkoutButtonPressed {
     //set the tableview to edit mode
     [_tableView setEditing:YES];
@@ -131,8 +136,6 @@
     //change the edit button to done
     editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(editWorkoutButtonDone)];
     [[self navigationItem] setRightBarButtonItem:editButton];
-    //set the title
-    [self setTitle:@"Edit Workouts"];
 }
 
 -(void)editWorkoutButtonDone {
@@ -143,8 +146,6 @@
     //reset the edit button
     editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editWorkoutButtonPressed)];
     [[self navigationItem] setRightBarButtonItem:editButton];
-    //reset the title
-    [self setTitle:@"Workouts"];
     
 }
 
@@ -159,6 +160,15 @@
     textField.placeholder = @"Workout title";
     [alert show];
     //data will be passed to alertView:clickedButtonAtIndex
+}
+
+-(void)settingsButtonPressed {
+    //open settings view
+    settingsViewController *settingsController = [[settingsViewController alloc] initWithNibName:@"settingsViewController" bundle:nil];
+    settingsController.delegate = self;UIImage *image = [[UIImage imageNamed:@"myCoolBarButton.png"]  resizableImageWithCapInsets:UIEdgeInsetsMake(0, 5, 0, 5)];
+    [[UIBarButtonItem appearance] setBackgroundImage:image forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    settingsController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentViewController:settingsController animated:YES completion:nil];
 }
 
 #pragma mark - UIAlertViewDelegate methods
@@ -349,6 +359,16 @@
     [_workoutDict setObject:workout forKey:name];
     [_workouts addObject:workout];
     [_tableView reloadData];
+}
+
+#pragma mark - Pass settings methods
+
+-(void)settingsViewControllerIsDone:(settingsViewController *)viewController {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)receiveNewSettings:(NSDictionary *)settings {
+    
 }
 
 @end

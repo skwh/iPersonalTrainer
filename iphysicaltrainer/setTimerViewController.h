@@ -21,7 +21,6 @@
 
 @property (assign, nonatomic) id <setTimerViewControllerDelegate> delegate;
 
--(IBAction)datePickerUpdated:(id)sender;
 -(IBAction)done:(id)sender;
 
 @end

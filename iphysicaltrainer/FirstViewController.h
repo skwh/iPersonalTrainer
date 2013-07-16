@@ -10,6 +10,7 @@
 #import "SecondViewController.h"
 #import "Workout.h"
 #import "addWorkoutViewController.h"
+#import "settingsViewController.h"
 
 @protocol passWorkout <NSObject>
 
@@ -36,7 +37,7 @@
 @end
 
 
-@interface FirstViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, passWorkout, UIAlertViewDelegate> {
+@interface FirstViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, passWorkout, passSettings, UIAlertViewDelegate> {
     UIBarButtonItem *editButton;
 }
 
@@ -46,6 +47,7 @@
 @property NSMutableDictionary *workoutDict;
 @property NSInteger workoutNumber;
 @property BOOL firstTimeLoad;
+@property NSDictionary *settings;
 
 #pragma mark - Workout setup methods
 
@@ -65,5 +67,6 @@
 -(void)editWorkoutButtonPressed;
 -(void)editWorkoutButtonDone;
 -(void)addWorkoutButtonPressed;
+-(void)settingsButtonPressed;
 
 @end

@@ -98,7 +98,7 @@
     NSInteger hours = num_seconds / (60 * 60);
     num_seconds -= hours * (60 * 60);
     NSInteger minutes = num_seconds / 60;
-    return [NSString stringWithFormat:@"%i days, %i hours, %i minutes",days,hours,minutes];
+    return [NSString stringWithFormat:@"%i hours, %i minutes, %i seconds",hours,minutes,num_seconds];
 }
 
 @end
