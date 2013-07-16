@@ -15,6 +15,7 @@
 @property NSMutableArray *actionsArray;
 @property NSMutableArray *countsArray;
 @property NSMutableDictionary *actionsDict;
+@property NSTimer *timer;
 
 -(void)associateActionsAndCounts;
 -(void)addAction:(Action*)action;

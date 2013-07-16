@@ -13,6 +13,7 @@
 @synthesize image;
 @synthesize name;
 @synthesize count;
+@synthesize timer;
 
 #pragma mark - factory methods
 

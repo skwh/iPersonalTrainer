@@ -29,6 +29,7 @@
 -(void)updateWorkout:(Workout *)workout removeAction:(Action *)action;
 -(void)updateWorkout:(Workout *)workout addAction:(Action *)action;
 -(void)updateWorkout:(Workout *)workout updateAction:(Action *)action;
+-(void)updateWorkout:(Workout *)workout withName:(NSString *)name;
 -(NSInteger)getActionNumberForWorkout:(Workout *)workout;
 -(Action *)getAction:(NSString *)actionNamed forWorkout:(Workout*)workout;
 

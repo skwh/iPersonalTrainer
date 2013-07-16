@@ -342,4 +342,13 @@
     [_tableView reloadData];
 }
 
+-(void)updateWorkout:(Workout *)workout withName:(NSString *)name {
+    [_workoutDict removeObjectForKey:[workout name]];
+    [_workouts removeObject:workout];
+    [workout setName:name];
+    [_workoutDict setObject:workout forKey:name];
+    [_workouts addObject:workout];
+    [_tableView reloadData];
+}
+
 @end

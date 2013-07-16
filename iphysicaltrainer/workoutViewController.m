@@ -65,6 +65,11 @@
         workoutProgress *progressController = [[workoutProgress alloc] initWithNibName:@"workoutProgress" bundle:nil];
         [progressController setWorkoutNamed:_workoutName];
         [[self navigationController] pushViewController:progressController animated:TRUE];
+    } else if (sender == _edit) {
+        editWorkoutViewController *editController = [[editWorkoutViewController alloc] initWithNibName:@"editWorkoutViewController" bundle:nil];
+        [editController setDelegate:self];
+        [editController setWorkoutTitle:_workoutName];
+        [[self navigationController] pushViewController:editController animated:TRUE];
     }
 }
 
@@ -227,6 +232,27 @@
 -(void)updateAction:(Action *)action withName:(NSString *)newName {
     [action setName:newName];
     [[self delegate] updateWorkout:[self getWorkoutFromController] updateAction:action];
+}
+
+#pragma mark - update workout details methods
+
+-(void)updateWorkoutWithName:(NSString *)name {
+    [self setTitle:name];
+    [[self delegate] updateWorkout:[self getWorkoutFromController] withName:name];
+    _workoutName = name;
+}
+-(void)updateWorkoutWithDictionary:(NSDictionary *)settings {
+    NSString *name = [settings objectForKey:@"name"];
+    NSTimer *timer = [settings objectForKey:@"timer"];
+    if (name) {
+        [self updateWorkoutWithName:name];
+    }
+    if (timer) {
+        [self updateWorkoutWithTimer:timer];
+    }
+}
+-(void)updateWorkoutWithTimer:(NSTimer *)timer {
+    [[self getWorkoutFromController] setTimer:timer];
 }
 
 @end

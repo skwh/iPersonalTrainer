@@ -66,6 +66,14 @@
 		18D4B81D178C7A52008175A2 /* workoutList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18D4B81B178C7A52008175A2 /* workoutList.plist */; };
 		18D4B85D178CD42C008175A2 /* workoutList-edit.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18D4B85C178CD42B008175A2 /* workoutList-edit.plist */; };
 		18D4B85E178CD42C008175A2 /* workoutList-edit.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18D4B85C178CD42B008175A2 /* workoutList-edit.plist */; };
+		18EAB40117949F36006E023C /* editWorkoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EAB3FF17949F36006E023C /* editWorkoutViewController.m */; };
+		18EAB40217949F36006E023C /* editWorkoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EAB3FF17949F36006E023C /* editWorkoutViewController.m */; };
+		18EAB40317949F36006E023C /* editWorkoutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EAB40017949F36006E023C /* editWorkoutViewController.xib */; };
+		18EAB40417949F36006E023C /* editWorkoutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EAB40017949F36006E023C /* editWorkoutViewController.xib */; };
+		18EAB4081794AEF1006E023C /* setTimerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EAB4061794AEF1006E023C /* setTimerViewController.m */; };
+		18EAB4091794AEF1006E023C /* setTimerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EAB4061794AEF1006E023C /* setTimerViewController.m */; };
+		18EAB40A1794AEF1006E023C /* setTimerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EAB4071794AEF1006E023C /* setTimerViewController.xib */; };
+		18EAB40B1794AEF1006E023C /* setTimerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EAB4071794AEF1006E023C /* setTimerViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -134,6 +142,12 @@
 		18D4B818178C6886008175A2 /* Workout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Workout.m; sourceTree = "<group>"; };
 		18D4B81B178C7A52008175A2 /* workoutList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = workoutList.plist; sourceTree = "<group>"; };
 		18D4B85C178CD42B008175A2 /* workoutList-edit.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "workoutList-edit.plist"; sourceTree = "<group>"; };
+		18EAB3FE17949F36006E023C /* editWorkoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = editWorkoutViewController.h; sourceTree = "<group>"; };
+		18EAB3FF17949F36006E023C /* editWorkoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = editWorkoutViewController.m; sourceTree = "<group>"; };
+		18EAB40017949F36006E023C /* editWorkoutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = editWorkoutViewController.xib; sourceTree = "<group>"; };
+		18EAB4051794AEF0006E023C /* setTimerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = setTimerViewController.h; sourceTree = "<group>"; };
+		18EAB4061794AEF1006E023C /* setTimerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = setTimerViewController.m; sourceTree = "<group>"; };
+		18EAB4071794AEF1006E023C /* setTimerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = setTimerViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -277,6 +291,12 @@
 				1894EEE5178B626500EECEC3 /* actionEditViewController.h */,
 				1894EEE6178B626500EECEC3 /* actionEditViewController.m */,
 				1894EEE7178B626500EECEC3 /* actionEditViewController.xib */,
+				18EAB3FE17949F36006E023C /* editWorkoutViewController.h */,
+				18EAB3FF17949F36006E023C /* editWorkoutViewController.m */,
+				18EAB40017949F36006E023C /* editWorkoutViewController.xib */,
+				18EAB4051794AEF0006E023C /* setTimerViewController.h */,
+				18EAB4061794AEF1006E023C /* setTimerViewController.m */,
+				18EAB4071794AEF1006E023C /* setTimerViewController.xib */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -373,6 +393,8 @@
 				188DD639178F2CE00041B541 /* LargeFirstViewController.xib in Resources */,
 				188DD63B178F43460041B541 /* LargeSecondViewController.xib in Resources */,
 				188DD63E178F44D40041B541 /* LargeWorkoutViewController.xib in Resources */,
+				18EAB40317949F36006E023C /* editWorkoutViewController.xib in Resources */,
+				18EAB40A1794AEF1006E023C /* setTimerViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -391,6 +413,8 @@
 				18D4B85E178CD42C008175A2 /* workoutList-edit.plist in Resources */,
 				188DD63C178F43460041B541 /* LargeSecondViewController.xib in Resources */,
 				188DD63F178F44D40041B541 /* LargeWorkoutViewController.xib in Resources */,
+				18EAB40417949F36006E023C /* editWorkoutViewController.xib in Resources */,
+				18EAB40B1794AEF1006E023C /* setTimerViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -428,6 +452,8 @@
 				1894EEE8178B626500EECEC3 /* actionEditViewController.m in Sources */,
 				1894EEF5178B62AF00EECEC3 /* Action.m in Sources */,
 				18D4B819178C6886008175A2 /* Workout.m in Sources */,
+				18EAB40117949F36006E023C /* editWorkoutViewController.m in Sources */,
+				18EAB4081794AEF1006E023C /* setTimerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,6 +469,8 @@
 				1894EEE9178B626500EECEC3 /* actionEditViewController.m in Sources */,
 				1894EEF6178B62AF00EECEC3 /* Action.m in Sources */,
 				18D4B81A178C6886008175A2 /* Workout.m in Sources */,
+				18EAB40217949F36006E023C /* editWorkoutViewController.m in Sources */,
+				18EAB4091794AEF1006E023C /* setTimerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

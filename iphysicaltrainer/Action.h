@@ -18,5 +18,6 @@
 @property (atomic) UIImage *image;
 @property (atomic) NSString *name;
 @property (atomic) NSString *count;
+@property NSTimer *timer;
 
 @end

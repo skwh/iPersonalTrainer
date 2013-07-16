@@ -14,6 +14,7 @@
 @synthesize actionsArray = _actionsArray;
 @synthesize countsArray = _countsArray;
 @synthesize actionsDict = _actionsDict;
+@synthesize timer = _timer;
 
 -(NSString *)description {
     return [self name];

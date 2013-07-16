@@ -24,9 +24,16 @@
 
 @end
 
-#import "actionEditViewController.h"
+@protocol updateWorkoutDetails
+-(void)updateWorkoutWithName:(NSString *)name;
+-(void)updateWorkoutWithDictionary:(NSDictionary *)settings;
+-(void)updateWorkoutWithTimer:(NSTimer *)timer;
+@end
 
-@interface workoutViewController : UIViewController <UITableViewDataSource,UITableViewDelegate,passAction> {
+#import "actionEditViewController.h"
+#import "editWorkoutViewController.h"
+
+@interface workoutViewController : UIViewController <UITableViewDataSource,UITableViewDelegate,passAction,updateWorkoutDetails,UIAlertViewDelegate> {
     UIBarButtonItem *editButton;
     //UIBarButtonItem *addButton;
     id <passWorkout> delegate;
