@@ -17,6 +17,9 @@
 
 @implementation setTimerViewController
 
+@synthesize picker = _picker;
+@synthesize savedTime = _savedTime;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -36,6 +39,12 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+-(void)viewWillAppear:(BOOL)animated {
+    NSLog(@"does saved time exist? %f", _savedTime);
+    if (_savedTime) {
+        [_picker setCountDownDuration:_savedTime];
+    }
 }
 
 -(void)viewWillDisappear:(BOOL)animated {

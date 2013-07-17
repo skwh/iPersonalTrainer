@@ -11,8 +11,8 @@
 
 @interface SecondViewController : UIViewController
 
-@property IBOutlet UILabel *runTimeLabel;
-@property IBOutlet UIButton *startStopButton;
-@property IBOutlet MKMapView *map;
+@property (weak) IBOutlet UILabel *runTimeLabel;
+@property (weak) IBOutlet UIButton *startStopButton;
+@property (weak) IBOutlet MKMapView *map;
 
 @end

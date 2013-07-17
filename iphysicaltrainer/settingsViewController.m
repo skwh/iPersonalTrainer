@@ -40,7 +40,7 @@
 }
 
 -(IBAction)done:(id)sender {
-    
+    [[self delegate] settingsViewControllerIsDone:self];
 }
 
 @end

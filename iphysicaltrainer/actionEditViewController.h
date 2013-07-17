@@ -16,11 +16,11 @@
 @property NSString *actionNamed;
 
 @property Action *keptAction;
-@property IBOutlet UITextField *nameEdit;
-@property IBOutlet UITextField *countEdit;
-@property IBOutlet UIButton *selectImage;
-@property IBOutlet UIImageView *actionImage;
-@property id delegate;
+@property (weak) IBOutlet UITextField *nameEdit;
+@property (weak) IBOutlet UITextField *countEdit;
+@property (weak) IBOutlet UIButton *selectImage;
+@property (weak) IBOutlet UIImageView *actionImage;
+@property (retain, nonatomic) id delegate;
 
 -(IBAction)nameIsDoneEditing:(id)sender;
 -(IBAction)countIsDoneEditing:(id)sender;

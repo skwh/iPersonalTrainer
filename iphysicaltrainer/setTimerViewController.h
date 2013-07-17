@@ -20,6 +20,7 @@
 @interface setTimerViewController : UIViewController <UINavigationBarDelegate>
 
 @property (assign, nonatomic) id <setTimerViewControllerDelegate> delegate;
+@property NSTimeInterval savedTime;
 
 -(IBAction)done:(id)sender;
 

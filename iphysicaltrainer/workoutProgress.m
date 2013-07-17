@@ -39,4 +39,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)timerDone:(NSTimer *)timer {
+    NSLog(@"TIMES UP BRO");
+    [timer invalidate];
+}
+
 @end

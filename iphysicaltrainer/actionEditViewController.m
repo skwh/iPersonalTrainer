@@ -42,7 +42,7 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated {
-    NSString *fullTitle = [@"Edit Action - " stringByAppendingString:_actionNamed];
+    NSString *fullTitle = [@"Edit-" stringByAppendingString:_actionNamed];
     [self setTitle:fullTitle];
     [_nameEdit setText:_actionNamed];
     NSString *count = [NSString stringWithFormat:@"%@",[_keptAction count]];
@@ -54,7 +54,7 @@
 -(void)viewWillDisappear:(BOOL)animated {
     //save the settings, even if they weren't changed
     NSString *name = [_nameEdit text];
-    [self setTitle:[@"Edit Action - " stringByAppendingString:name]];
+    [self setTitle:[@"Edit-" stringByAppendingString:name]];
     NSString *count = [_countEdit text];
     [_keptAction setName:name];
     [[self delegate] updateAction:_keptAction withName:name];
@@ -69,7 +69,7 @@
 
 -(IBAction)nameIsDoneEditing:(id)sender {
     NSString *newName = [_nameEdit text];
-    [self setTitle:[@"Edit Action - " stringByAppendingString:newName]];
+    [self setTitle:[@"Edit-" stringByAppendingString:newName]];
     _actionNamed = newName;
     [_keptAction setName:newName];
 }

@@ -69,6 +69,10 @@
         editWorkoutViewController *editController = [[editWorkoutViewController alloc] initWithNibName:@"editWorkoutViewController" bundle:nil];
         [editController setDelegate:self];
         [editController setWorkoutTitle:_workoutName];
+        if ([[self getWorkoutFromController] timer]) {
+            NSTimeInterval savedInterval = [[[self getWorkoutFromController] timer] timeInterval];
+            [editController setTimeInterval:savedInterval];
+        }
         [[self navigationController] pushViewController:editController animated:TRUE];
     }
 }

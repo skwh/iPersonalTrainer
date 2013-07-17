@@ -10,10 +10,10 @@
 
 @interface editWorkoutViewController ()
 
-@property IBOutlet UITextField *workoutNameInput;
-@property IBOutlet UISwitch *workoutTimerSwitch;
-@property IBOutlet UILabel *pickerIndicator;
-@property NSTimeInterval timeInterval;
+@property (weak) IBOutlet UITextField *workoutNameInput;
+@property (weak) IBOutlet UISwitch *workoutTimerSwitch;
+@property (weak) IBOutlet UILabel *pickerIndicator;
+@property (weak) IBOutlet UIButton *editPickerSelection;
 
 @end
 
@@ -24,6 +24,7 @@
 @synthesize workoutTitle = _workoutTitle;
 @synthesize timeInterval = _timeInterval;
 @synthesize pickerIndicator = _pickerIndicator;
+@synthesize editPickerSelection = _editPickerSelection;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -40,19 +41,35 @@
     // Do any additional setup after loading the view from its nib.
     NSString *title = [@"Edit Workout - " stringByAppendingString:_workoutTitle];
     [self setTitle:title];
-}
-
--(void)viewWillAppear:(BOOL)animated {
     [_workoutNameInput setText:_workoutTitle];
+    if (_timeInterval) {
+        [_workoutTimerSwitch setOn:TRUE];
+        [_pickerIndicator setText:[@"Timer on: " stringByAppendingFormat:@"%@",[self createDateStringFromInteger:_timeInterval]]];
+        [_editPickerSelection setHidden:NO];
+    }
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
     NSString *newName = [_workoutNameInput text];
-    [[self delegate] updateWorkoutWithName:newName];
+    if (![_workoutTitle isEqualToString:newName]) {
+        [[self delegate] updateWorkoutWithName:newName];
+    }
     if (_timeInterval) {
-        NSInvocation *blankInvocation = [NSInvocation invocationWithMethodSignature:[NSMethodSignature alloc]];
-        NSTimer *newTimer = [NSTimer timerWithTimeInterval:_timeInterval invocation:blankInvocation repeats:FALSE];
+        workoutProgress *progressController = [[workoutProgress alloc] init];
+        NSTimer *newTimer = [NSTimer timerWithTimeInterval:_timeInterval
+                                                    target:progressController
+                                                    selector:@selector(timerDone:)
+                                                    userInfo:nil
+                                                    repeats:YES
+                             ];
+        
         [[self delegate] updateWorkoutWithTimer:newTimer];
+    }
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    if (_timeInterval) {
+        [_editPickerSelection setHidden:NO];
     }
 }
 
@@ -75,11 +92,23 @@
         if (_workoutTimerSwitch.on == TRUE) {
             setTimerViewController *timerController = [[setTimerViewController alloc] initWithNibName:@"setTimerViewController" bundle:nil];
             timerController.delegate = self;
+            if (_timeInterval) {
+                [timerController setSavedTime:_timeInterval];
+            }
             timerController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
             [self presentViewController:timerController animated:YES completion:nil];
         } else if (_workoutTimerSwitch.on == FALSE) {
             [_pickerIndicator setText:@"Timer is disabled."];
+            [_editPickerSelection setHidden:YES];
         }
+    } else if (sender == _editPickerSelection && _workoutTimerSwitch.on) {
+        setTimerViewController *timerController = [[setTimerViewController alloc] initWithNibName:@"setTimerViewController" bundle:nil];
+        timerController.delegate = self;
+        if (_timeInterval) {
+            [timerController setSavedTime:_timeInterval];
+        }
+        timerController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+        [self presentViewController:timerController animated:YES completion:nil];
     }
 }
 
@@ -98,7 +127,7 @@
     NSInteger hours = num_seconds / (60 * 60);
     num_seconds -= hours * (60 * 60);
     NSInteger minutes = num_seconds / 60;
-    return [NSString stringWithFormat:@"%i hours, %i minutes, %i seconds",hours,minutes,num_seconds];
+    return [NSString stringWithFormat:@"%i hours, %i minutes",hours,minutes];
 }
 
 @end

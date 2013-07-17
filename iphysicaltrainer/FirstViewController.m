@@ -11,6 +11,9 @@
 
 @interface FirstViewController ()
 
+@property UIBarButtonItem *settingsButton;
+@property NSInteger workoutNumber;
+
 @end
 
 @implementation FirstViewController
@@ -24,6 +27,7 @@
 @synthesize workoutNumber = _workoutNumber;
 @synthesize firstTimeLoad = _firstTimeLoad;
 @synthesize settings = _settings;
+@synthesize settingsButton = _settingsButton;
 
 #pragma mark - Base methods
 
@@ -49,8 +53,8 @@
     
     UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editWorkoutButtonPressed)];
     [[self navigationItem] setRightBarButtonItem:button];
-    UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action:@selector(settingsButtonPressed)];
-    [[self navigationItem] setLeftBarButtonItem:settingsButton];
+    _settingsButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action:@selector(settingsButtonPressed)];
+    [[self navigationItem] setLeftBarButtonItem:_settingsButton];
 }
 
 - (void)didReceiveMemoryWarning
@@ -142,7 +146,7 @@
     //set the tableview to no edit mode
     [_tableView setEditing:NO];
     //remove the add button
-    [[self navigationItem] setLeftBarButtonItem:nil];
+    [[self navigationItem] setLeftBarButtonItem:_settingsButton];
     //reset the edit button
     editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editWorkoutButtonPressed)];
     [[self navigationItem] setRightBarButtonItem:editButton];

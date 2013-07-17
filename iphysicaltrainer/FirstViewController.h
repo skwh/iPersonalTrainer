@@ -42,12 +42,11 @@
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property NSMutableArray *workoutData;
-@property NSMutableArray *workouts;
-@property NSMutableDictionary *workoutDict;
-@property NSInteger workoutNumber;
+@property (strong) NSMutableArray *workoutData;
+@property (strong) NSMutableArray *workouts;
+@property (strong) NSMutableDictionary *workoutDict;
+@property (strong) NSDictionary *settings;
 @property BOOL firstTimeLoad;
-@property NSDictionary *settings;
 
 #pragma mark - Workout setup methods
 

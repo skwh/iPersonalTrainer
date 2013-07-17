@@ -9,12 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "workoutViewController.h"
 #import "setTimerViewController.h"
+#import "workoutProgress.h"
 
 @interface editWorkoutViewController : UIViewController <setTimerViewControllerDelegate>
 
 @property NSString *workoutTitle;
-
 @property (assign, nonatomic) id <updateWorkoutDetails> delegate;
+@property NSTimeInterval timeInterval;
 
 -(IBAction)timerSwitchPressed:(id)sender;
 

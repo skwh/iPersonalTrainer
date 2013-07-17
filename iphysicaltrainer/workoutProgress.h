@@ -12,4 +12,6 @@
 
 @property NSString *workoutNamed;
 
+-(void)timerDone:(NSTimer *)timer;
+
 @end

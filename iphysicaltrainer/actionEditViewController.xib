@@ -249,7 +249,6 @@
 						<float key="IBUIMinimumFontSize">17</float>
 						<object class="IBUITextInputTraits" key="IBUITextInputTraits">
 							<int key="IBUIAutocorrectionType">1</int>
-							<int key="IBUIReturnKeyType">4</int>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						</object>
 						<int key="IBUIClearButtonMode">1</int>

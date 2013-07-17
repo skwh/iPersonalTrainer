@@ -39,11 +39,11 @@
     id <passWorkout> delegate;
 }
 
-@property NSString *workoutName;
-@property IBOutlet UITableView *actionListTable;
-@property IBOutlet UIButton *start;
-@property IBOutlet UIButton *stats;
-@property IBOutlet UIButton *edit;
+@property (strong) NSString *workoutName;
+@property (weak) IBOutlet UITableView *actionListTable;
+@property (weak) IBOutlet UIButton *start;
+@property (weak) IBOutlet UIButton *stats;
+@property (weak) IBOutlet UIButton *edit;
 @property (retain) id delegate;
 
 -(IBAction)continueToNextView:(id)sender;

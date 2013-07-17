@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "iphysicaltrainer/FirstViewController.m"
-         timestampString = "395705375.906547"
+         timestampString = "395770170.237935"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "178"
-         endingLineNumber = "178"
+         startingLineNumber = "183"
+         endingLineNumber = "183"
          landmarkName = "-alertView:clickedButtonAtIndex:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -21,11 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "iphysicaltrainer/FirstViewController.m"
-         timestampString = "395705375.906547"
+         timestampString = "395770170.237935"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "259"
-         endingLineNumber = "259"
+         startingLineNumber = "264"
+         endingLineNumber = "264"
          landmarkName = "-tableView:commitEditingStyle:forRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -47,24 +47,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "iphysicaltrainer/workoutViewController.m"
-         timestampString = "395679935.815791"
+         timestampString = "395774518.952669"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "72"
-         endingLineNumber = "72"
-         landmarkName = "-continueToNextView:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "iphysicaltrainer/workoutViewController.m"
-         timestampString = "395682384.95479"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "241"
-         endingLineNumber = "241"
+         startingLineNumber = "245"
+         endingLineNumber = "245"
          landmarkName = "-updateWorkoutWithName:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -73,11 +60,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "iphysicaltrainer/editWorkoutViewController.m"
-         timestampString = "395685763.344869"
+         timestampString = "395776618.25843"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "87"
-         endingLineNumber = "87"
+         startingLineNumber = "116"
+         endingLineNumber = "116"
          landmarkName = "-workoutNameDoneEditing:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -85,8 +72,60 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
+         filePath = "iphysicaltrainer/FirstViewController.m"
+         timestampString = "395770170.237935"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "360"
+         endingLineNumber = "360"
+         landmarkName = "-updateWorkout:withName:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "iphysicaltrainer/setTimerViewController.m"
+         timestampString = "395771014.803086"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "55"
+         endingLineNumber = "55"
+         landmarkName = "-done:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
          filePath = "iphysicaltrainer/editWorkoutViewController.m"
-         timestampString = "395683809.779659"
+         timestampString = "395776500.92462"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "93"
+         endingLineNumber = "93"
+         landmarkName = "-timerSwitchPressed:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "iphysicaltrainer/setTimerViewController.m"
+         timestampString = "395771014.803086"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "34"
+         endingLineNumber = "34"
+         landmarkName = "-viewDidLoad"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "iphysicaltrainer/setTimerViewController.m"
+         timestampString = "395771014.803086"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "50"
@@ -98,26 +137,26 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "iphysicaltrainer/FirstViewController.m"
-         timestampString = "395705375.906547"
+         filePath = "iphysicaltrainer/setTimerViewController.m"
+         timestampString = "395771007.309072"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "355"
-         endingLineNumber = "355"
-         landmarkName = "-updateWorkout:withName:"
+         startingLineNumber = "44"
+         endingLineNumber = "44"
+         landmarkName = "-viewWillAppear:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "iphysicaltrainer/setTimerViewController.m"
-         timestampString = "395699833.490447"
+         filePath = "iphysicaltrainer/workoutViewController.m"
+         timestampString = "395773955.386124"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "46"
-         endingLineNumber = "46"
-         landmarkName = "-done:"
+         startingLineNumber = "71"
+         endingLineNumber = "71"
+         landmarkName = "-continueToNextView:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -125,38 +164,25 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "iphysicaltrainer/editWorkoutViewController.m"
-         timestampString = "395698206.808921"
+         timestampString = "395776437.815415"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "76"
-         endingLineNumber = "76"
-         landmarkName = "-timerSwitchPressed:"
+         startingLineNumber = "45"
+         endingLineNumber = "45"
+         landmarkName = "-viewDidLoad"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "iphysicaltrainer/setTimerViewController.m"
-         timestampString = "395698360.614042"
+         filePath = "iphysicaltrainer/workoutViewController.m"
+         timestampString = "395774845.129613"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "31"
-         endingLineNumber = "31"
-         landmarkName = "-viewDidLoad"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "iphysicaltrainer/setTimerViewController.m"
-         timestampString = "395699830.049647"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "41"
-         endingLineNumber = "41"
-         landmarkName = "-viewWillDisappear:"
+         startingLineNumber = "259"
+         endingLineNumber = "259"
+         landmarkName = "-updateWorkoutWithTimer:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
