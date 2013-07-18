@@ -28,6 +28,7 @@
 @synthesize firstTimeLoad = _firstTimeLoad;
 @synthesize settings = _settings;
 @synthesize settingsButton = _settingsButton;
+@synthesize usingLargeScreen = _usingLargeScreen;
 
 #pragma mark - Base methods
 
@@ -49,15 +50,14 @@
     _workoutDict = [[NSMutableDictionary alloc] init];
     _workouts = [[NSMutableArray alloc] init];
     _firstTimeLoad = YES;
-    
     UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editWorkoutButtonPressed)];
     [[self navigationItem] setRightBarButtonItem:button];
     _settingsButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action:@selector(settingsButtonPressed)];
     [[self navigationItem] setLeftBarButtonItem:_settingsButton];
+    [self loadWorkouts];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
-    [self loadWorkouts];
 }
 
 - (void)didReceiveMemoryWarning
@@ -126,7 +126,8 @@
 
 -(IBAction)continueToNextView:(id)sender withWorkoutName:(NSString*)workoutName {
     if (_firstTimeLoad) _firstTimeLoad = NO;
-    workoutViewController *workoutView = [[workoutViewController alloc] initWithNibName:@"workoutViewController" bundle:nil];
+    NSString *nibName = (_usingLargeScreen)? @"LargeWorkoutViewController" : @"workoutViewController";
+    workoutViewController *workoutView = [[workoutViewController alloc] initWithNibName:nibName bundle:nil];
     [workoutView setWorkoutName:workoutName];
     [workoutView setDelegate:self];
     [[self navigationController] pushViewController:workoutView animated:YES];
@@ -171,7 +172,8 @@
 
 -(void)settingsButtonPressed {
     //open settings view
-    settingsViewController *settingsController = [[settingsViewController alloc] initWithNibName:@"settingsViewController" bundle:nil];
+    NSString *nibName = (_usingLargeScreen)? @"LargeSettingsViewController" : @"settingsViewController";
+    settingsViewController *settingsController = [[settingsViewController alloc] initWithNibName:nibName bundle:nil];
     settingsController.delegate = self;UIImage *image = [[UIImage imageNamed:@"myCoolBarButton.png"]  resizableImageWithCapInsets:UIEdgeInsetsMake(0, 5, 0, 5)];
     [[UIBarButtonItem appearance] setBackgroundImage:image forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     settingsController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
@@ -338,7 +340,6 @@
     [[workout actionsDict] removeObjectForKey:[action name]];
     //remove action from counts
     [[workout countsArray] removeObject:[action count]];
-    NSLog(@"actions count: %@",[action count]);
     //reload the workouts table
     [_tableView reloadData];
 }

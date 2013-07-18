@@ -15,4 +15,6 @@
 @property (weak) IBOutlet UIButton *startStopButton;
 @property (weak) IBOutlet MKMapView *map;
 
+@property BOOL usingLargeScreen;
+
 @end

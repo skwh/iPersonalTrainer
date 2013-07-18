@@ -19,13 +19,15 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     // Override point for customization after application launch.
-    UIViewController *viewController1;
-    UIViewController *viewController2;
+    FirstViewController *viewController1;
+    SecondViewController *viewController2;
     if ([[UIScreen mainScreen] bounds].size.height == 568) {
         viewController1 = [[FirstViewController alloc] initWithNibName:@"LargeFirstViewController" bundle:nil];
+        [viewController1 setUsingLargeScreen:TRUE];
         viewController2 = [[SecondViewController alloc] initWithNibName:@"LargeSecondViewController" bundle:nil];
     } else {
         viewController1 = [[FirstViewController alloc] initWithNibName:@"FirstViewController" bundle:nil];
+        [viewController1 setUsingLargeScreen:FALSE];
         viewController2 = [[SecondViewController alloc] initWithNibName:@"SecondViewController" bundle:nil];
     }
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:viewController1];

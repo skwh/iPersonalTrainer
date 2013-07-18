@@ -39,7 +39,6 @@
     [self setTitle:_workoutName];
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addActionButtonPressed)];
     [[self navigationItem] setRightBarButtonItem:addButton animated:TRUE];
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -58,16 +57,19 @@
     //check which button called the method
     if (sender == _stats) {
         //create a new stats controller and push it
-        workoutStatsViewController *statsController = [[workoutStatsViewController alloc] initWithNibName:@"workoutStatsViewController" bundle:nil];
+        NSString *nibName = (_usingLargeScreen)?@"LargeWorkoutStatsViewController" : @"workoutStatsViewController";
+        workoutStatsViewController *statsController = [[workoutStatsViewController alloc] initWithNibName:nibName bundle:nil];
         [statsController setWorkoutNamed:_workoutName];
         [[self navigationController] pushViewController:statsController animated:TRUE];
     } else if (sender == _start) {
         //create a new start controller and push it
-        workoutProgress *progressController = [[workoutProgress alloc] initWithNibName:@"workoutProgress" bundle:nil];
+        NSString *nibName = (_usingLargeScreen)?@"LargeWorkoutProgressViewController" : @"workoutProgress";
+        workoutProgress *progressController = [[workoutProgress alloc] initWithNibName:nibName bundle:nil];
         [progressController setWorkoutNamed:_workoutName];
         [[self navigationController] pushViewController:progressController animated:TRUE];
     } else if (sender == _edit) {
-        editWorkoutViewController *editController = [[editWorkoutViewController alloc] initWithNibName:@"editWorkoutViewController" bundle:nil];
+        NSString *nibName = (_usingLargeScreen)?@"LargeEditWorkoutViewController" : @"editWorkoutViewController";
+        editWorkoutViewController *editController = [[editWorkoutViewController alloc] initWithNibName:nibName bundle:nil];
         [editController setDelegate:self];
         [editController setWorkoutTitle:_workoutName];
         if ([[self getWorkoutFromController] timer]) {
@@ -126,8 +128,9 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     //get the action selected
     Action *selectedAction = [[[self getWorkoutFromController] actionsArray] objectAtIndex:indexPath.row];
+    NSString *nibName = (_usingLargeScreen)? @"LargeActionEditViewController" : @"actionEditViewController";
     //create action edit controller
-    actionEditViewController *actionEdit = [[actionEditViewController alloc] initWithNibName:@"actionEditViewController" bundle:nil];
+    actionEditViewController *actionEdit = [[actionEditViewController alloc] initWithNibName:nibName bundle:nil];
     //set the selected action name
     [actionEdit setKeptAction:selectedAction];
     //pass the index path for later
@@ -173,9 +176,9 @@
 #pragma mark - UIAlertViewDelegate methods
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    NSString *enteredTitle = [[alertView textFieldAtIndex:0] text];
-    NSString *newTitle = [enteredTitle stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     if ([alertView.title isEqualToString:@"New Action"]) {
+        NSString *enteredTitle = [[alertView textFieldAtIndex:0] text];
+        NSString *newTitle = [enteredTitle stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         //check if the action already exists
         if ([[[self getWorkoutFromController] actionsDict] objectForKey:newTitle]) {
             //if so, alert the user

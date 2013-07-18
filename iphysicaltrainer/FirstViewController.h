@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "SecondViewController.h"
 #import "Workout.h"
-#import "addWorkoutViewController.h"
 #import "settingsViewController.h"
 
 @protocol passWorkout <NSObject>
@@ -47,6 +46,7 @@
 @property (strong) NSMutableDictionary *workoutDict;
 @property (strong) NSDictionary *settings;
 @property BOOL firstTimeLoad;
+@property BOOL usingLargeScreen;
 
 #pragma mark - Workout setup methods
 

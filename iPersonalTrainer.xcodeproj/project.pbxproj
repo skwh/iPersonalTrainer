@@ -30,8 +30,6 @@
 		188CCB681787401700150942 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 188CCB661787401700150942 /* InfoPlist.strings */; };
 		188CCB751787414900150942 /* libKiwi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 188CCB741787414900150942 /* libKiwi.a */; };
 		188CCB77178741FA00150942 /* iPersonalTrainerSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 188CCB76178741FA00150942 /* iPersonalTrainerSpecs.m */; };
-		188CCB791787461800150942 /* first-circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 188CCB781787461800150942 /* first-circle.png */; };
-		188CCB7A1787461800150942 /* first-circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 188CCB781787461800150942 /* first-circle.png */; };
 		188CCB7E178763BF00150942 /* workoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188CCB7C178763BF00150942 /* workoutViewController.m */; };
 		188CCB7F178763BF00150942 /* workoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188CCB7C178763BF00150942 /* workoutViewController.m */; };
 		188CCB80178763BF00150942 /* workoutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 188CCB7D178763BF00150942 /* workoutViewController.xib */; };
@@ -50,16 +48,18 @@
 		1894EEDB178B4D8900EECEC3 /* workoutStatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1894EED8178B4D8900EECEC3 /* workoutStatsViewController.m */; };
 		1894EEDC178B4D8900EECEC3 /* workoutStatsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1894EED9178B4D8900EECEC3 /* workoutStatsViewController.xib */; };
 		1894EEDD178B4D8900EECEC3 /* workoutStatsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1894EED9178B4D8900EECEC3 /* workoutStatsViewController.xib */; };
-		1894EEE1178B5E2300EECEC3 /* addWorkoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1894EEDF178B5E2200EECEC3 /* addWorkoutViewController.m */; };
-		1894EEE2178B5E2300EECEC3 /* addWorkoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1894EEDF178B5E2200EECEC3 /* addWorkoutViewController.m */; };
-		1894EEE3178B5E2300EECEC3 /* addWorkoutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1894EEE0178B5E2200EECEC3 /* addWorkoutViewController.xib */; };
-		1894EEE4178B5E2300EECEC3 /* addWorkoutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1894EEE0178B5E2200EECEC3 /* addWorkoutViewController.xib */; };
 		1894EEE8178B626500EECEC3 /* actionEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1894EEE6178B626500EECEC3 /* actionEditViewController.m */; };
 		1894EEE9178B626500EECEC3 /* actionEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1894EEE6178B626500EECEC3 /* actionEditViewController.m */; };
 		1894EEEA178B626500EECEC3 /* actionEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1894EEE7178B626500EECEC3 /* actionEditViewController.xib */; };
 		1894EEEB178B626500EECEC3 /* actionEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1894EEE7178B626500EECEC3 /* actionEditViewController.xib */; };
 		1894EEF5178B62AF00EECEC3 /* Action.m in Sources */ = {isa = PBXBuildFile; fileRef = 1894EEF4178B62AF00EECEC3 /* Action.m */; };
 		1894EEF6178B62AF00EECEC3 /* Action.m in Sources */ = {isa = PBXBuildFile; fileRef = 1894EEF4178B62AF00EECEC3 /* Action.m */; };
+		18A60055179879EC00F021C1 /* LargeWorkoutStatsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A60054179879EC00F021C1 /* LargeWorkoutStatsViewController.xib */; };
+		18A6005917987A2000F021C1 /* LargeActionEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A6005817987A2000F021C1 /* LargeActionEditViewController.xib */; };
+		18A6005B17987A3200F021C1 /* LargeEditWorkoutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A6005A17987A3200F021C1 /* LargeEditWorkoutViewController.xib */; };
+		18A6005D17987A4100F021C1 /* LargeSetTimerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A6005C17987A4100F021C1 /* LargeSetTimerViewController.xib */; };
+		18A6005F17987A4F00F021C1 /* LargeSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A6005E17987A4F00F021C1 /* LargeSettingsViewController.xib */; };
+		18A6006117987B1800F021C1 /* LargeWorkoutProgressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A6006017987B1700F021C1 /* LargeWorkoutProgressViewController.xib */; };
 		18ACDBAF1795EA2700A950A6 /* settingsIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 18ACDBAE1795EA2600A950A6 /* settingsIcon.png */; };
 		18ACDBB01795EA2700A950A6 /* settingsIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 18ACDBAE1795EA2600A950A6 /* settingsIcon.png */; };
 		18ACDBB41795F54600A950A6 /* settingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ACDBB21795F54500A950A6 /* settingsViewController.m */; };
@@ -122,7 +122,6 @@
 		188CCB671787401700150942 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		188CCB741787414900150942 /* libKiwi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libKiwi.a; path = "lib/Kiwi/build/Release-iphoneos/libKiwi.a"; sourceTree = "<group>"; };
 		188CCB76178741FA00150942 /* iPersonalTrainerSpecs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iPersonalTrainerSpecs.m; sourceTree = "<group>"; };
-		188CCB781787461800150942 /* first-circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first-circle.png"; sourceTree = "<group>"; };
 		188CCB7B178763BE00150942 /* workoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = workoutViewController.h; sourceTree = "<group>"; };
 		188CCB7C178763BF00150942 /* workoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = workoutViewController.m; sourceTree = "<group>"; };
 		188CCB7D178763BF00150942 /* workoutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = workoutViewController.xib; sourceTree = "<group>"; };
@@ -136,14 +135,17 @@
 		1894EED7178B4D8900EECEC3 /* workoutStatsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = workoutStatsViewController.h; sourceTree = "<group>"; };
 		1894EED8178B4D8900EECEC3 /* workoutStatsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = workoutStatsViewController.m; sourceTree = "<group>"; };
 		1894EED9178B4D8900EECEC3 /* workoutStatsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = workoutStatsViewController.xib; sourceTree = "<group>"; };
-		1894EEDE178B5E2200EECEC3 /* addWorkoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addWorkoutViewController.h; sourceTree = "<group>"; };
-		1894EEDF178B5E2200EECEC3 /* addWorkoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addWorkoutViewController.m; sourceTree = "<group>"; };
-		1894EEE0178B5E2200EECEC3 /* addWorkoutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = addWorkoutViewController.xib; sourceTree = "<group>"; };
 		1894EEE5178B626500EECEC3 /* actionEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = actionEditViewController.h; sourceTree = "<group>"; };
 		1894EEE6178B626500EECEC3 /* actionEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = actionEditViewController.m; sourceTree = "<group>"; };
 		1894EEE7178B626500EECEC3 /* actionEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = actionEditViewController.xib; sourceTree = "<group>"; };
 		1894EEF3178B62AE00EECEC3 /* Action.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Action.h; sourceTree = "<group>"; };
 		1894EEF4178B62AF00EECEC3 /* Action.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Action.m; sourceTree = "<group>"; };
+		18A60054179879EC00F021C1 /* LargeWorkoutStatsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LargeWorkoutStatsViewController.xib; sourceTree = "<group>"; };
+		18A6005817987A2000F021C1 /* LargeActionEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LargeActionEditViewController.xib; sourceTree = "<group>"; };
+		18A6005A17987A3200F021C1 /* LargeEditWorkoutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LargeEditWorkoutViewController.xib; sourceTree = "<group>"; };
+		18A6005C17987A4100F021C1 /* LargeSetTimerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LargeSetTimerViewController.xib; sourceTree = "<group>"; };
+		18A6005E17987A4F00F021C1 /* LargeSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LargeSettingsViewController.xib; sourceTree = "<group>"; };
+		18A6006017987B1700F021C1 /* LargeWorkoutProgressViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LargeWorkoutProgressViewController.xib; sourceTree = "<group>"; };
 		18ACDBAE1795EA2600A950A6 /* settingsIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settingsIcon.png; sourceTree = "<group>"; };
 		18ACDBB11795F54500A950A6 /* settingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = settingsViewController.h; sourceTree = "<group>"; };
 		18ACDBB21795F54500A950A6 /* settingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = settingsViewController.m; sourceTree = "<group>"; };
@@ -222,7 +224,6 @@
 			isa = PBXGroup;
 			children = (
 				188DD637178F2C3D0041B541 /* View Controllers */,
-				188CCB781787461800150942 /* first-circle.png */,
 				18ACDBAE1795EA2600A950A6 /* settingsIcon.png */,
 				188CCB3A1787401700150942 /* AppDelegate.h */,
 				188CCB3B1787401700150942 /* AppDelegate.m */,
@@ -280,39 +281,50 @@
 			children = (
 				188CCB431787401700150942 /* FirstViewController.h */,
 				188CCB441787401700150942 /* FirstViewController.m */,
-				188CCB511787401700150942 /* FirstViewController.xib */,
-				188DD638178F2CE00041B541 /* LargeFirstViewController.xib */,
 				188CCB4A1787401700150942 /* SecondViewController.h */,
 				188CCB4B1787401700150942 /* SecondViewController.m */,
-				188CCB541787401700150942 /* SecondViewController.xib */,
-				188DD63A178F43460041B541 /* LargeSecondViewController.xib */,
 				188CCB7B178763BE00150942 /* workoutViewController.h */,
 				188CCB7C178763BF00150942 /* workoutViewController.m */,
-				188CCB7D178763BF00150942 /* workoutViewController.xib */,
-				188DD63D178F44D40041B541 /* LargeWorkoutViewController.xib */,
 				1894EED0178B4CAA00EECEC3 /* workoutProgress.h */,
 				1894EED1178B4CAA00EECEC3 /* workoutProgress.m */,
-				1894EED2178B4CAA00EECEC3 /* workoutProgress.xib */,
 				1894EED7178B4D8900EECEC3 /* workoutStatsViewController.h */,
 				1894EED8178B4D8900EECEC3 /* workoutStatsViewController.m */,
-				1894EED9178B4D8900EECEC3 /* workoutStatsViewController.xib */,
-				1894EEDE178B5E2200EECEC3 /* addWorkoutViewController.h */,
-				1894EEDF178B5E2200EECEC3 /* addWorkoutViewController.m */,
-				1894EEE0178B5E2200EECEC3 /* addWorkoutViewController.xib */,
 				1894EEE5178B626500EECEC3 /* actionEditViewController.h */,
 				1894EEE6178B626500EECEC3 /* actionEditViewController.m */,
-				1894EEE7178B626500EECEC3 /* actionEditViewController.xib */,
 				18EAB3FE17949F36006E023C /* editWorkoutViewController.h */,
 				18EAB3FF17949F36006E023C /* editWorkoutViewController.m */,
-				18EAB40017949F36006E023C /* editWorkoutViewController.xib */,
 				18EAB4051794AEF0006E023C /* setTimerViewController.h */,
 				18EAB4061794AEF1006E023C /* setTimerViewController.m */,
-				18EAB4071794AEF1006E023C /* setTimerViewController.xib */,
 				18ACDBB11795F54500A950A6 /* settingsViewController.h */,
 				18ACDBB21795F54500A950A6 /* settingsViewController.m */,
-				18ACDBB31795F54500A950A6 /* settingsViewController.xib */,
+				18A60053179878D500F021C1 /* Nibs */,
 			);
 			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		18A60053179878D500F021C1 /* Nibs */ = {
+			isa = PBXGroup;
+			children = (
+				188CCB511787401700150942 /* FirstViewController.xib */,
+				188DD638178F2CE00041B541 /* LargeFirstViewController.xib */,
+				188CCB541787401700150942 /* SecondViewController.xib */,
+				188DD63A178F43460041B541 /* LargeSecondViewController.xib */,
+				188CCB7D178763BF00150942 /* workoutViewController.xib */,
+				188DD63D178F44D40041B541 /* LargeWorkoutViewController.xib */,
+				1894EED2178B4CAA00EECEC3 /* workoutProgress.xib */,
+				18A6006017987B1700F021C1 /* LargeWorkoutProgressViewController.xib */,
+				1894EED9178B4D8900EECEC3 /* workoutStatsViewController.xib */,
+				18A60054179879EC00F021C1 /* LargeWorkoutStatsViewController.xib */,
+				1894EEE7178B626500EECEC3 /* actionEditViewController.xib */,
+				18A6005817987A2000F021C1 /* LargeActionEditViewController.xib */,
+				18EAB40017949F36006E023C /* editWorkoutViewController.xib */,
+				18A6005A17987A3200F021C1 /* LargeEditWorkoutViewController.xib */,
+				18EAB4071794AEF1006E023C /* setTimerViewController.xib */,
+				18A6005C17987A4100F021C1 /* LargeSetTimerViewController.xib */,
+				18ACDBB31795F54500A950A6 /* settingsViewController.xib */,
+				18A6005E17987A4F00F021C1 /* LargeSettingsViewController.xib */,
+			);
+			name = Nibs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -396,11 +408,9 @@
 				188CCB501787401700150942 /* second@2x.png in Resources */,
 				188CCB531787401700150942 /* FirstViewController.xib in Resources */,
 				188CCB561787401700150942 /* SecondViewController.xib in Resources */,
-				188CCB791787461800150942 /* first-circle.png in Resources */,
 				188CCB80178763BF00150942 /* workoutViewController.xib in Resources */,
 				1894EED5178B4CAA00EECEC3 /* workoutProgress.xib in Resources */,
 				1894EEDC178B4D8900EECEC3 /* workoutStatsViewController.xib in Resources */,
-				1894EEE3178B5E2300EECEC3 /* addWorkoutViewController.xib in Resources */,
 				1894EEEA178B626500EECEC3 /* actionEditViewController.xib in Resources */,
 				18D4B81C178C7A52008175A2 /* workoutList.plist in Resources */,
 				18D4B85D178CD42C008175A2 /* workoutList-edit.plist in Resources */,
@@ -411,6 +421,12 @@
 				18EAB40A1794AEF1006E023C /* setTimerViewController.xib in Resources */,
 				18ACDBAF1795EA2700A950A6 /* settingsIcon.png in Resources */,
 				18ACDBB61795F54600A950A6 /* settingsViewController.xib in Resources */,
+				18A60055179879EC00F021C1 /* LargeWorkoutStatsViewController.xib in Resources */,
+				18A6005917987A2000F021C1 /* LargeActionEditViewController.xib in Resources */,
+				18A6005B17987A3200F021C1 /* LargeEditWorkoutViewController.xib in Resources */,
+				18A6005D17987A4100F021C1 /* LargeSetTimerViewController.xib in Resources */,
+				18A6005F17987A4F00F021C1 /* LargeSettingsViewController.xib in Resources */,
+				18A6006117987B1800F021C1 /* LargeWorkoutProgressViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,11 +435,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				188CCB681787401700150942 /* InfoPlist.strings in Resources */,
-				188CCB7A1787461800150942 /* first-circle.png in Resources */,
 				188CCB81178763BF00150942 /* workoutViewController.xib in Resources */,
 				1894EED6178B4CAA00EECEC3 /* workoutProgress.xib in Resources */,
 				1894EEDD178B4D8900EECEC3 /* workoutStatsViewController.xib in Resources */,
-				1894EEE4178B5E2300EECEC3 /* addWorkoutViewController.xib in Resources */,
 				1894EEEB178B626500EECEC3 /* actionEditViewController.xib in Resources */,
 				18D4B81D178C7A52008175A2 /* workoutList.plist in Resources */,
 				18D4B85E178CD42C008175A2 /* workoutList-edit.plist in Resources */,
@@ -466,7 +480,6 @@
 				188CCB7E178763BF00150942 /* workoutViewController.m in Sources */,
 				1894EED3178B4CAA00EECEC3 /* workoutProgress.m in Sources */,
 				1894EEDA178B4D8900EECEC3 /* workoutStatsViewController.m in Sources */,
-				1894EEE1178B5E2300EECEC3 /* addWorkoutViewController.m in Sources */,
 				1894EEE8178B626500EECEC3 /* actionEditViewController.m in Sources */,
 				1894EEF5178B62AF00EECEC3 /* Action.m in Sources */,
 				18D4B819178C6886008175A2 /* Workout.m in Sources */,
@@ -484,7 +497,6 @@
 				188CCB7F178763BF00150942 /* workoutViewController.m in Sources */,
 				1894EED4178B4CAA00EECEC3 /* workoutProgress.m in Sources */,
 				1894EEDB178B4D8900EECEC3 /* workoutStatsViewController.m in Sources */,
-				1894EEE2178B5E2300EECEC3 /* addWorkoutViewController.m in Sources */,
 				1894EEE9178B626500EECEC3 /* actionEditViewController.m in Sources */,
 				1894EEF6178B62AF00EECEC3 /* Action.m in Sources */,
 				18D4B81A178C6886008175A2 /* Workout.m in Sources */,

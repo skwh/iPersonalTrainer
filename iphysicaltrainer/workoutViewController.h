@@ -46,6 +46,7 @@
 @property (weak) IBOutlet UIButton *stats;
 @property (weak) IBOutlet UIButton *edit;
 @property (retain) id delegate;
+@property BOOL usingLargeScreen;
 
 -(IBAction)continueToNextView:(id)sender;
 
