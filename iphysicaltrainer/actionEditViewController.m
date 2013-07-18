@@ -1,4 +1,4 @@
-	//
+//
 //  actionEditViewController.m
 //  iPersonalTrainer
 //
@@ -11,6 +11,7 @@
 @interface actionEditViewController ()
 
 @property UIImagePickerController *imagePickerController;
+@property BOOL deleting;
 
 @end
 
@@ -23,6 +24,9 @@
 @synthesize countEdit = _countEdit;
 @synthesize selectImage = _selectImage;
 @synthesize actionImage = _actionImage;
+@synthesize deleteActionButton = _deleteActionButton;
+@synthesize cellIndexPath = _cellIndexPath;
+@synthesize deleting = _deleting;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -38,7 +42,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     _actionNamed = [_keptAction name];
-    
+    _deleting = FALSE;
+    [_deleteActionButton.layer setCornerRadius:10.0f];
+    [_deleteActionButton.layer setBorderColor:[UIColor blackColor].CGColor];
+    [_deleteActionButton.layer setBorderWidth:2.0f];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -52,19 +59,45 @@
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
-    //save the settings, even if they weren't changed
-    NSString *name = [_nameEdit text];
-    [self setTitle:[@"Edit-" stringByAppendingString:name]];
-    NSString *count = [_countEdit text];
-    [_keptAction setName:name];
-    [[self delegate] updateAction:_keptAction withName:name];
-    [[self delegate] updateAction:_keptAction withCount:count];
+    //if the action is not being deleted
+    if (!_deleting) {
+        //save the settings, even if they weren't changed
+        NSString *name = [_nameEdit text];
+        [self setTitle:[@"Edit-" stringByAppendingString:name]];
+        NSString *count = [_countEdit text];
+        [_keptAction setName:name];
+        [[self delegate] updateAction:_keptAction withName:name];
+        [[self delegate] updateAction:_keptAction withCount:count];
+    }
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - UIAlertViewDelegate methods
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+        [[self delegate] deleteAction:_keptAction atIndexPath:_cellIndexPath];
+        _deleting = TRUE;
+        [alertView dismissWithClickedButtonIndex:0 animated:YES];
+        [[self navigationController] popViewControllerAnimated:YES];
+    } else if (buttonIndex == 1) {
+        [alertView dismissWithClickedButtonIndex:1 animated:YES];
+    }
+}
+
+
+#pragma mark - editing methods
+
+-(IBAction)deletedButtonPressed:(id)sender {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Delete Action" message:@"Are you sure you want to delete this action?" delegate:self cancelButtonTitle:@"Yes" otherButtonTitles:nil];
+    [alert addButtonWithTitle:@"No"];
+    alert.alertViewStyle = UIAlertViewStyleDefault;
+    [alert show];
 }
 
 -(IBAction)nameIsDoneEditing:(id)sender {
@@ -78,6 +111,8 @@
     NSString *newCount = [_countEdit text];
     [_keptAction setCount:newCount];
 }
+
+#pragma mark - Image Picker methods
 
 -(void)finishAndUpdateImagePicker {
     [self dismissViewControllerAnimated:YES completion:NULL];

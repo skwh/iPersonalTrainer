@@ -21,6 +21,7 @@
 -(void)updateActionWithString:(NSString*)actionNamed;
 -(void)updateAction:(Action*)action withName:(NSString *)newName;
 -(void)updateAction:(Action *)action withCount:(NSString *)newCount;
+-(void)deleteAction:(Action *)action atIndexPath:(NSIndexPath*)indexPath;
 
 @end
 
@@ -59,10 +60,5 @@
 
 -(void)refreshLabelData;
 -(void)addActionButtonPressed;
--(void)editButtonPressed;
--(void)editButtonDonePressed;
-
--(void)disableStartStatsButtons;
--(void)enableStartStatsButtons;
 
 @end

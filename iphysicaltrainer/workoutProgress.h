@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface workoutProgress : UIViewController
+@interface workoutProgress : UIViewController <UIAlertViewDelegate>
 
 @property NSString *workoutNamed;
 

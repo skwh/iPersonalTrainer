@@ -37,8 +37,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self setTitle:_workoutName];
-    UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editButtonPressed)];
-    [[self navigationItem] setRightBarButtonItem:button];
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addActionButtonPressed)];
+    [[self navigationItem] setRightBarButtonItem:addButton animated:TRUE];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -77,14 +78,6 @@
     }
 }
 
--(void)addActionButtonPressed {
-    //create action and add it to the tableView
-    UIImage *defaultImage = [UIImage imageNamed:@"first.png"];
-    Action *newAction = [Action actionWithName:@"New Action" andCount:@"0" andImage:defaultImage];
-    [[self delegate] updateWorkout:[self getWorkoutFromController] addAction:newAction];
-    [_actionListTable reloadData];
-}
-
 #pragma mark - UITableView methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -92,14 +85,14 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellId = @"ActionCellID";
-    UITableViewCell *cell = [_actionListTable dequeueReusableCellWithIdentifier:cellId];
+    //get current action from the workout from the workoutcontroller
+    Action *currentAction = [[[self getWorkoutFromController] actionsArray] objectAtIndex:indexPath.row];
+    static NSString *cellIdentifier = @"ActionCell";
+    UITableViewCell *cell = [_actionListTable dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
     }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    //get current action from the workout from the workoutcontroller
-    Action *currentAction = [[[self getWorkoutFromController] actionsArray] objectAtIndex:indexPath.row];
     //check if the action retrieved is valid
     if (currentAction != nil) {
         cell.textLabel.text = [currentAction name];
@@ -137,6 +130,8 @@
     actionEditViewController *actionEdit = [[actionEditViewController alloc] initWithNibName:@"actionEditViewController" bundle:nil];
     //set the selected action name
     [actionEdit setKeptAction:selectedAction];
+    //pass the index path for later
+    [actionEdit setCellIndexPath:indexPath];
     //set the action's delegate
     [actionEdit setDelegate:self];
     //push the controller onto the stack
@@ -162,47 +157,42 @@
 
 #pragma mark - edit mode methods
 
--(void)editButtonPressed {
-    //set the title to show action editing
-    [self setTitle:@"Edit Actions"];
-    //set the table to editing mode
-    [_actionListTable setEditing:YES];
-    //create and push the add button
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addActionButtonPressed)];
-    [[self navigationItem] setLeftBarButtonItem:addButton animated:TRUE];
-    //create and push the done button
-    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(editButtonDonePressed)];
-    [[self navigationItem] setRightBarButtonItem:doneButton animated:TRUE];
-    //disable start & stats buttons
-    [self disableStartStatsButtons];
+-(void)addActionButtonPressed {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"New Action"
+                                                  message:@"Please enter the name of the new action."
+                                                  delegate:self
+                                                  cancelButtonTitle:@"Continue"
+                                                  otherButtonTitles:nil
+                              ];
+    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    UITextField *textField = [alertView textFieldAtIndex:0];
+    textField.placeholder = @"Action Name";
+    [alertView show];
 }
 
--(void)editButtonDonePressed {
-    //reset the title
-    [self setTitle:_workoutName];
-    //set the table to normal mode
-    [_actionListTable setEditing:FALSE];
-    //remove the add button
-    [[self navigationItem] setLeftBarButtonItem:nil animated:YES];
-    //revert to the edit button and push it
-    editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editButtonPressed)];
-    [[self navigationItem] setRightBarButtonItem:editButton];
-    //enable start stats buttons
-    [self enableStartStatsButtons];
-}
+#pragma mark - UIAlertViewDelegate methods
 
--(void)disableStartStatsButtons {
-    [_start setAlpha:0.5f];
-    [_stats setAlpha:0.5f];
-    [_start setEnabled:FALSE];
-    [_stats setEnabled:FALSE];
-}
-
--(void)enableStartStatsButtons {
-    [_start setAlpha:1.0f];
-    [_stats setAlpha:1.0f];
-    [_start setEnabled:TRUE];
-    [_stats setEnabled:TRUE];
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSString *enteredTitle = [[alertView textFieldAtIndex:0] text];
+    NSString *newTitle = [enteredTitle stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    if ([alertView.title isEqualToString:@"New Action"]) {
+        //check if the action already exists
+        if ([[[self getWorkoutFromController] actionsDict] objectForKey:newTitle]) {
+            //if so, alert the user
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"An action with that name already exists." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+            alert.alertViewStyle = UIAlertViewStyleDefault;
+            [alert show];
+        } else {
+            //else, create action and add it to the tableView
+            UIImage *defaultImage = [UIImage imageNamed:@"first.png"];
+            Action *newAction = [Action actionWithName:newTitle andCount:@"0" andImage:defaultImage];
+            [[self delegate] updateWorkout:[self getWorkoutFromController] addAction:newAction];
+            [_actionListTable reloadData];
+        }
+    } else if ([alertView.title isEqualToString:@"Oops"]) {
+        [alertView dismissWithClickedButtonIndex:0 animated:YES];
+        [self addActionButtonPressed];
+    }
 }
 
 #pragma mark - ui control methods
@@ -222,20 +212,28 @@
 
 -(void)updateAction:(Action *)action {
     [[self delegate] updateWorkout:[self getWorkoutFromController] updateAction:action];
+    [_actionListTable reloadData];
 }
 
 -(void)updateActionWithString:(NSString *)actionNamed {
     [[self delegate] updateWorkout:[self getWorkoutFromController] updateAction:[self getActionForName:actionNamed]];
+    [_actionListTable reloadData];
 }
 
 -(void)updateAction:(Action *)action withCount:(NSString *)newCount {
     [action setCount:newCount];
     [[self delegate] updateWorkout:[self getWorkoutFromController] updateAction:action];
+    [_actionListTable reloadData];
 }
 
 -(void)updateAction:(Action *)action withName:(NSString *)newName {
     [action setName:newName];
     [[self delegate] updateWorkout:[self getWorkoutFromController] updateAction:action];
+    [_actionListTable reloadData];
+}
+
+-(void)deleteAction:(Action *)action atIndexPath:(NSIndexPath *)indexPath {
+    [self tableView:_actionListTable commitEditingStyle:UITableViewCellEditingStyleDelete forRowAtIndexPath:indexPath];
 }
 
 #pragma mark - update workout details methods

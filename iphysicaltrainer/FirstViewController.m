@@ -49,12 +49,15 @@
     _workoutDict = [[NSMutableDictionary alloc] init];
     _workouts = [[NSMutableArray alloc] init];
     _firstTimeLoad = YES;
-    [self loadWorkouts];
     
     UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editWorkoutButtonPressed)];
     [[self navigationItem] setRightBarButtonItem:button];
     _settingsButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action:@selector(settingsButtonPressed)];
     [[self navigationItem] setLeftBarButtonItem:_settingsButton];
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    [self loadWorkouts];
 }
 
 - (void)didReceiveMemoryWarning
@@ -203,6 +206,7 @@
         [_tableView reloadData];
     } else if ([alertView.title isEqualToString:@"Oops"]) {
         //if the alert that is presented was the error message, go back to the new workout alert
+        [alertView dismissWithClickedButtonIndex:0 animated:YES];
         [self addWorkoutButtonPressed];
     }
 }
@@ -334,6 +338,7 @@
     [[workout actionsDict] removeObjectForKey:[action name]];
     //remove action from counts
     [[workout countsArray] removeObject:[action count]];
+    NSLog(@"actions count: %@",[action count]);
     //reload the workouts table
     [_tableView reloadData];
 }
