@@ -41,7 +41,6 @@
     // Dispose of any resources that can be recreated.
 }
 -(void)viewWillAppear:(BOOL)animated {
-    NSLog(@"does saved time exist? %f", _savedTime);
     if (_savedTime) {
         [_picker setCountDownDuration:_savedTime];
     }
