@@ -61,13 +61,16 @@
 -(void)viewWillDisappear:(BOOL)animated {
     //if the action is not being deleted
     if (!_deleting) {
-        //save the settings, even if they weren't changed
+        //and the settings were changed
         NSString *name = [_nameEdit text];
-        [self setTitle:[@"Edit-" stringByAppendingString:name]];
         NSString *count = [_countEdit text];
-        [_keptAction setName:name];
-        [[self delegate] updateAction:_keptAction withName:name];
-        [[self delegate] updateAction:_keptAction withCount:count];
+        if (![name isEqualToString:[_keptAction name]] || ![count isEqualToString:[NSString stringWithFormat:@"%@",[_keptAction count]]]) {
+            [self setTitle:[@"Edit-" stringByAppendingString:name]];
+            [_keptAction setName:name];
+            [_keptAction setCount:count];
+            [[self delegate] updateAction:_keptAction withName:name];
+            [[self delegate] updateAction:_keptAction withCount:count];
+        }
     }
 }
 

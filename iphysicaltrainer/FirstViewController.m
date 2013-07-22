@@ -39,6 +39,8 @@
         self.title = NSLocalizedString(@"Workouts", @"Workouts");
         self.tabBarItem.image = [UIImage imageNamed:@"first"];
     }
+    NSDictionary *newSettings = [NSDictionary dictionaryWithObject:@"1" forKey:@"imageAlwaysOn"];
+    _settings = newSettings;
     return self;
 }
 							
@@ -174,8 +176,8 @@
     //open settings view
     NSString *nibName = (_usingLargeScreen)? @"LargeSettingsViewController" : @"settingsViewController";
     settingsViewController *settingsController = [[settingsViewController alloc] initWithNibName:nibName bundle:nil];
-    settingsController.delegate = self;UIImage *image = [[UIImage imageNamed:@"myCoolBarButton.png"]  resizableImageWithCapInsets:UIEdgeInsetsMake(0, 5, 0, 5)];
-    [[UIBarButtonItem appearance] setBackgroundImage:image forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    settingsController.delegate = self;
+    [settingsController setCurrentSettings:_settings];
     settingsController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self presentViewController:settingsController animated:YES completion:nil];
 }
@@ -371,14 +373,18 @@
     [_tableView reloadData];
 }
 
+-(NSDictionary *)getTopLevelSettings {
+    return _settings;
+}
+
 #pragma mark - Pass settings methods
 
 -(void)settingsViewControllerIsDone:(settingsViewController *)viewController {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
--(void)receiveNewSettings:(NSDictionary *)settings {
-    
+-(void)receiveNewSettings:(NSDictionary *)newSettings {
+    _settings = newSettings;
 }
 
 @end

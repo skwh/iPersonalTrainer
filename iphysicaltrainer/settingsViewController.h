@@ -11,11 +11,13 @@
 
 @protocol passSettings
 -(void)settingsViewControllerIsDone:(settingsViewController*)viewController;
--(void)receiveNewSettings:(NSDictionary *)settings;
+-(void)receiveNewSettings:(NSDictionary *)newSettings;
 @end
 
 @interface settingsViewController : UIViewController
 
 @property id delegate;
+@property IBOutlet UISwitch *imageOnSwitch;
+@property NSDictionary *currentSettings;
 
 @end

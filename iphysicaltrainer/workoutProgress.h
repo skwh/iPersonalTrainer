@@ -15,8 +15,7 @@
 @property Workout *workoutKept;
 @property NSString *workoutNamed;
 @property IBOutlet UIScrollView *scrollViewWorkouts;
-
-
+@property NSDictionary *passedSettings;
 
 -(void)timerDone:(NSTimer *)timer;
 -(void)loadScroller;

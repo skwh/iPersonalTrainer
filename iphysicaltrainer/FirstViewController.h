@@ -22,6 +22,7 @@
 -(NSMutableDictionary *)returnMasterWorkoutDictionary;
 -(NSMutableDictionary *)reloadAllWorkouts;
 -(Workout*)workoutFromReloadedWorkouts:(NSString *)workoutNamed;
+-(NSDictionary *)getTopLevelSettings;
 
 @required
 

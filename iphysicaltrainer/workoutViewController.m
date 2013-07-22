@@ -66,6 +66,7 @@
         NSString *nibName = (_usingLargeScreen)?@"LargeWorkoutProgressViewController" : @"workoutProgress";
         workoutProgress *progressController = [[workoutProgress alloc] initWithNibName:nibName bundle:nil];
         [progressController setWorkoutNamed:_workoutName];
+        [progressController setPassedSettings:[[self delegate] getTopLevelSettings]];
         [progressController setWorkoutKept:[self getWorkoutFromController]];
         [[self navigationController] pushViewController:progressController animated:TRUE];
     } else if (sender == _edit) {

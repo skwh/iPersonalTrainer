@@ -60,6 +60,10 @@
 		18A6005D17987A4100F021C1 /* LargeSetTimerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A6005C17987A4100F021C1 /* LargeSetTimerViewController.xib */; };
 		18A6005F17987A4F00F021C1 /* LargeSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A6005E17987A4F00F021C1 /* LargeSettingsViewController.xib */; };
 		18A6006117987B1800F021C1 /* LargeWorkoutProgressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A6006017987B1700F021C1 /* LargeWorkoutProgressViewController.xib */; };
+		18A60064179D901800F021C1 /* app-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18A60062179D901700F021C1 /* app-icon@2x.png */; };
+		18A60065179D901800F021C1 /* app-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18A60062179D901700F021C1 /* app-icon@2x.png */; };
+		18A60066179D901800F021C1 /* app-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 18A60063179D901700F021C1 /* app-icon.png */; };
+		18A60067179D901800F021C1 /* app-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 18A60063179D901700F021C1 /* app-icon.png */; };
 		18ACDBAF1795EA2700A950A6 /* settingsIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 18ACDBAE1795EA2600A950A6 /* settingsIcon.png */; };
 		18ACDBB01795EA2700A950A6 /* settingsIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 18ACDBAE1795EA2600A950A6 /* settingsIcon.png */; };
 		18ACDBB41795F54600A950A6 /* settingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ACDBB21795F54500A950A6 /* settingsViewController.m */; };
@@ -146,6 +150,8 @@
 		18A6005C17987A4100F021C1 /* LargeSetTimerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LargeSetTimerViewController.xib; sourceTree = "<group>"; };
 		18A6005E17987A4F00F021C1 /* LargeSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LargeSettingsViewController.xib; sourceTree = "<group>"; };
 		18A6006017987B1700F021C1 /* LargeWorkoutProgressViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LargeWorkoutProgressViewController.xib; sourceTree = "<group>"; };
+		18A60062179D901700F021C1 /* app-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon@2x.png"; sourceTree = "<group>"; };
+		18A60063179D901700F021C1 /* app-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon.png"; sourceTree = "<group>"; };
 		18ACDBAE1795EA2600A950A6 /* settingsIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settingsIcon.png; sourceTree = "<group>"; };
 		18ACDBB11795F54500A950A6 /* settingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = settingsViewController.h; sourceTree = "<group>"; };
 		18ACDBB21795F54500A950A6 /* settingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = settingsViewController.m; sourceTree = "<group>"; };
@@ -244,6 +250,8 @@
 		188CCB321787401700150942 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				18A60062179D901700F021C1 /* app-icon@2x.png */,
+				18A60063179D901700F021C1 /* app-icon.png */,
 				18D4B85C178CD42B008175A2 /* workoutList-edit.plist */,
 				18D4B81B178C7A52008175A2 /* workoutList.plist */,
 				188CCB331787401700150942 /* iPersonalTrainer-Info.plist */,
@@ -427,6 +435,8 @@
 				18A6005D17987A4100F021C1 /* LargeSetTimerViewController.xib in Resources */,
 				18A6005F17987A4F00F021C1 /* LargeSettingsViewController.xib in Resources */,
 				18A6006117987B1800F021C1 /* LargeWorkoutProgressViewController.xib in Resources */,
+				18A60064179D901800F021C1 /* app-icon@2x.png in Resources */,
+				18A60066179D901800F021C1 /* app-icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,6 +457,8 @@
 				18EAB40B1794AEF1006E023C /* setTimerViewController.xib in Resources */,
 				18ACDBB01795EA2700A950A6 /* settingsIcon.png in Resources */,
 				18ACDBB71795F54600A950A6 /* settingsViewController.xib in Resources */,
+				18A60065179D901800F021C1 /* app-icon@2x.png in Resources */,
+				18A60067179D901800F021C1 /* app-icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

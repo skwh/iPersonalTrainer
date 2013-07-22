@@ -14,6 +14,9 @@
 
 @implementation settingsViewController
 
+@synthesize imageOnSwitch = _imageOnSwitch;
+@synthesize currentSettings = _currentSettings;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -27,6 +30,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -37,6 +41,17 @@
 
 -(void)viewWillDisappear:(BOOL)animated {
     
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    NSString *imageOnSwitchValue = [_currentSettings objectForKey:@"imageAlwaysOn"];
+    [_imageOnSwitch setOn:[imageOnSwitchValue boolValue] animated:YES];
+}
+
+-(IBAction)imageOnSwitchChanged:(id)sender {
+    NSString *imageOnSwitchValue = [NSString stringWithFormat:@"%d",[_imageOnSwitch state]];
+    NSDictionary *newSettings = [NSDictionary dictionaryWithObject:imageOnSwitchValue forKey:@"imageAlwaysOn"];
+    [[self delegate] receiveNewSettings:newSettings];
 }
 
 -(IBAction)done:(id)sender {
