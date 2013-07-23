@@ -11,10 +11,9 @@
 
 @interface SecondViewController : UIViewController
 
-@property (weak) IBOutlet UILabel *runTimeLabel;
-@property (weak) IBOutlet UIButton *startStopButton;
-@property (weak) IBOutlet MKMapView *map;
-
 @property BOOL usingLargeScreen;
+
+-(void)timerFired;
+-(void)startStopButtonPressed;
 
 @end
