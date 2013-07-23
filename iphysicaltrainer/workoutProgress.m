@@ -58,49 +58,83 @@
 
 -(void)loadScroller {
     NSInteger numPages = [[_workoutKept actionsArray] count];
+    //get the number of pages
     _numberOfPages = numPages;
-    [_scrollViewWorkouts setContentSize:CGSizeMake(numPages * self.view.frame.size.width, self.view.frame.size.height)];
-    [_scrollViewWorkouts setPagingEnabled:TRUE];
+    //create an array for the allowed actions (actions that are not blank)
+    NSMutableArray *allowedActionsArray = [[NSMutableArray alloc] init];
+    //iterate over all the actions
     for (int i=0;i<numPages;i++) {
+        //get the selected action
         Action *selectedAction = [[_workoutKept actionsArray] objectAtIndex:i];
+        //get the count of the selected action
         NSString *selectedActionCount = [NSString stringWithFormat:@"%@",[selectedAction count]];
-        
+        //if the selected action is blank
+        if ([selectedActionCount isEqualToString:@"0"] || [selectedActionCount isEqualToString:@""]) {
+            //skip it
+            continue;
+        } else {
+            //else, put it in the allowed actions
+            [allowedActionsArray addObject:selectedAction];
+        }
+    }
+    //set the size of the scroll view to allow for all the actions
+    [_scrollViewWorkouts setContentSize:CGSizeMake([allowedActionsArray count] * self.view.frame.size.width, self.view.frame.size.height)];
+    //set paging enabled
+    [_scrollViewWorkouts setPagingEnabled:TRUE];
+    //iterate over the allowed actions
+    for (int i=0;i<[allowedActionsArray count];i++) {
+        //get the selected action
+        Action *selectedAction = [allowedActionsArray objectAtIndex:i];
+        //get the count
+        NSString *selectedActionCount = [NSString stringWithFormat:@"%@",[selectedAction count]];
+        //get the x position where the slide is
         NSInteger slideWithPosition = i*self.view.frame.size.width;
-        
         //check the settings to see if the image is always on
         UIImage *selectedActionImage = [selectedAction image];
+        //if the image is not the default image
         if (selectedActionImage != [UIImage imageNamed:@"first.png"]) {
+            //allow it
             [self renderImage:selectedActionImage withPositionCount:i];
+            //or, if the imageAlwaysOn flag is true
         } else if ([[_passedSettings objectForKey:@"imageAlwaysOn"] isEqualToString:@"1"]) {
+            //allow it
             [self renderImage:selectedActionImage withPositionCount:i];
         }
+        //create the action's name's label
         UILabel *actionNameLabel = [[UILabel alloc] initWithFrame:CGRectMake((i*self.view.frame.size.width)+(self.view.frame.size.width/2), 20, 200, 40)];
+        //create the action's count's label
         UILabel *actionNumberLabel = [[UILabel alloc] initWithFrame:CGRectMake((i*self.view.frame.size.width)+(self.view.frame.size.width/2), 50, 200, 40)];
+        //create the tap view
         UIView *tapView = [[UIView alloc] init];
+        //set the tap view's tag to the current slide's position
         [tapView setTag:i];
-        
+        //set the background color of the tap view
         [tapView setBackgroundColor:[UIColor redColor]];
-        
+        //create the tap gesture recognizer
         UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
-        
+        //add the recognizer to the tap view
         [tapView addGestureRecognizer:tapRecognizer];
-        
+        //set the background color of the action's name's label
         [actionNumberLabel setBackgroundColor:[UIColor clearColor]];
+        //set the text of the action's name's label
         [actionNumberLabel setText:selectedActionCount];
-        
+        //set the background color of the action's count's label
         [actionNameLabel setBackgroundColor:[UIColor clearColor]];
+        //set the text of the action's count's label
         [actionNameLabel setText:[selectedAction name]];
-        
+        //get the size of the action's names' label
         CGSize actionLabelSize = [actionNameLabel.text sizeWithFont:actionNameLabel.font];
+        //get the sie of the action's count's label
         CGSize actionNumberLabelSize = [actionNumberLabel.text sizeWithFont:actionNumberLabel.font];
-        
-        [tapView setFrame:CGRectMake(slideWithPosition+((self.view.frame.size.width/2)-100), 150, 200, 200)];
+        //set the tap view's frame 
+        [tapView setFrame:CGRectMake(slideWithPosition+((self.view.frame.size.width/2)-100), 120, 200, 200)];
+        //set the action's name's label's frame
         [actionNameLabel setFrame:CGRectMake(slideWithPosition+(self.view.frame.size.width/2-(actionLabelSize.width/2)), 20, actionLabelSize.width, actionLabelSize.height)];
+        //set the action's counts' label's frame
         [actionNumberLabel setFrame:CGRectMake(slideWithPosition+(self.view.frame.size.width/2-(actionNumberLabelSize.width/2)), 50, actionNumberLabelSize.width, actionNumberLabelSize.height)];
-        
+        //add the number label to the private array
         [_actionCountLabels setObject:actionNumberLabel forKey:[NSString stringWithFormat:@"%i",i]];
-//        [_pagesAndTags setObject:[NSValue valueWithCGRect:CGRectMake(slideWithPosition+self.view.frame.size.width, 0, self.view.frame.size.width, self.view.frame.size.height)] forKey:[NSString stringWithFormat:@"%i",[tapView tag]]];
-        
+        //add all the created elements to the scroll view
         [_scrollViewWorkouts addSubview:tapView];
         [_scrollViewWorkouts addSubview:actionNameLabel];
         [_scrollViewWorkouts addSubview:actionNumberLabel];

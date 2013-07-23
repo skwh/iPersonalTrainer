@@ -64,8 +64,6 @@
 		18A60065179D901800F021C1 /* app-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18A60062179D901700F021C1 /* app-icon@2x.png */; };
 		18A60066179D901800F021C1 /* app-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 18A60063179D901700F021C1 /* app-icon.png */; };
 		18A60067179D901800F021C1 /* app-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 18A60063179D901700F021C1 /* app-icon.png */; };
-		18ACDBAF1795EA2700A950A6 /* settingsIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 18ACDBAE1795EA2600A950A6 /* settingsIcon.png */; };
-		18ACDBB01795EA2700A950A6 /* settingsIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 18ACDBAE1795EA2600A950A6 /* settingsIcon.png */; };
 		18ACDBB41795F54600A950A6 /* settingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ACDBB21795F54500A950A6 /* settingsViewController.m */; };
 		18ACDBB51795F54600A950A6 /* settingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ACDBB21795F54500A950A6 /* settingsViewController.m */; };
 		18ACDBB61795F54600A950A6 /* settingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18ACDBB31795F54500A950A6 /* settingsViewController.xib */; };
@@ -152,7 +150,6 @@
 		18A6006017987B1700F021C1 /* LargeWorkoutProgressViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LargeWorkoutProgressViewController.xib; sourceTree = "<group>"; };
 		18A60062179D901700F021C1 /* app-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon@2x.png"; sourceTree = "<group>"; };
 		18A60063179D901700F021C1 /* app-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon.png"; sourceTree = "<group>"; };
-		18ACDBAE1795EA2600A950A6 /* settingsIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settingsIcon.png; sourceTree = "<group>"; };
 		18ACDBB11795F54500A950A6 /* settingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = settingsViewController.h; sourceTree = "<group>"; };
 		18ACDBB21795F54500A950A6 /* settingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = settingsViewController.m; sourceTree = "<group>"; };
 		18ACDBB31795F54500A950A6 /* settingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = settingsViewController.xib; sourceTree = "<group>"; };
@@ -230,7 +227,6 @@
 			isa = PBXGroup;
 			children = (
 				188DD637178F2C3D0041B541 /* View Controllers */,
-				18ACDBAE1795EA2600A950A6 /* settingsIcon.png */,
 				188CCB3A1787401700150942 /* AppDelegate.h */,
 				188CCB3B1787401700150942 /* AppDelegate.m */,
 				188CCB461787401700150942 /* first.png */,
@@ -427,7 +423,6 @@
 				188DD63E178F44D40041B541 /* LargeWorkoutViewController.xib in Resources */,
 				18EAB40317949F36006E023C /* editWorkoutViewController.xib in Resources */,
 				18EAB40A1794AEF1006E023C /* setTimerViewController.xib in Resources */,
-				18ACDBAF1795EA2700A950A6 /* settingsIcon.png in Resources */,
 				18ACDBB61795F54600A950A6 /* settingsViewController.xib in Resources */,
 				18A60055179879EC00F021C1 /* LargeWorkoutStatsViewController.xib in Resources */,
 				18A6005917987A2000F021C1 /* LargeActionEditViewController.xib in Resources */,
@@ -455,7 +450,6 @@
 				188DD63F178F44D40041B541 /* LargeWorkoutViewController.xib in Resources */,
 				18EAB40417949F36006E023C /* editWorkoutViewController.xib in Resources */,
 				18EAB40B1794AEF1006E023C /* setTimerViewController.xib in Resources */,
-				18ACDBB01795EA2700A950A6 /* settingsIcon.png in Resources */,
 				18ACDBB71795F54600A950A6 /* settingsViewController.xib in Resources */,
 				18A60065179D901800F021C1 /* app-icon@2x.png in Resources */,
 				18A60067179D901800F021C1 /* app-icon.png in Resources */,
