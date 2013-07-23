@@ -49,7 +49,7 @@
 }
 
 -(IBAction)imageOnSwitchChanged:(id)sender {
-    NSString *imageOnSwitchValue = [NSString stringWithFormat:@"%d",[_imageOnSwitch state]];
+    NSString *imageOnSwitchValue = [NSString stringWithFormat:@"%d",[_imageOnSwitch isOn]];
     NSDictionary *newSettings = [NSDictionary dictionaryWithObject:imageOnSwitchValue forKey:@"imageAlwaysOn"];
     [[self delegate] receiveNewSettings:newSettings];
 }

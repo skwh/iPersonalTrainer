@@ -13,9 +13,17 @@
 @property NSMutableDictionary *actionCountLabels;
 @property int numberOfPages;
 
+@property NSTimer *timer;
+@property NSTimeInterval timeInterval;
+@property NSDate *timerDate;
+
 @end
 
 @implementation workoutProgress
+
+@synthesize timeInterval = _timeInterval;
+@synthesize timer = _timer;
+@synthesize timerDate = _timerDate;
 
 @synthesize numberOfPages = _numberOfPages;
 @synthesize actionCountLabels = _actionCountLabels;
@@ -41,13 +49,16 @@
     [self setTitle:fullTitle];
     _actionCountLabels = [[NSMutableDictionary alloc] init];
     [self loadScroller];
-    
+    [self startTimer];
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    [_timer invalidate];
 }
 
 -(void)loadScroller {
     NSInteger numPages = [[_workoutKept actionsArray] count];
     _numberOfPages = numPages;
-    NSLog(@"number of pages: %i",_numberOfPages);
     [_scrollViewWorkouts setContentSize:CGSizeMake(numPages * self.view.frame.size.width, self.view.frame.size.height)];
     [_scrollViewWorkouts setPagingEnabled:TRUE];
     for (int i=0;i<numPages;i++) {
@@ -111,6 +122,15 @@
     [_scrollViewWorkouts addSubview:actionImageView];
 }
 
+-(void)startTimer {
+    _timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(pollingFire) userInfo:nil repeats:YES];
+    _timerDate = [[NSDate alloc] init];
+}
+
+-(void)pollingFire {
+    _timeInterval++;
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -155,10 +175,29 @@
                 [_scrollViewWorkouts scrollRectToVisible:CGRectMake((1+[tappedView tag])*self.view.frame.size.width, 0, self.view.frame.size.width, self.view.frame.size.height) animated:YES];
                 //if the action is on the last page
             } else if (tappedViewTag == _numberOfPages-1) {
-                //go back to the workout screen
-                [[self navigationController] popViewControllerAnimated:TRUE];
+                //show an alert with the time
+                [_timer invalidate];
+                
+                NSInteger num_seconds = _timeInterval;
+                NSInteger days = num_seconds / (60 * 60 * 24);
+                num_seconds -= days * (60 * 60 * 24);
+                NSInteger hours = num_seconds / (60 * 60);
+                num_seconds -= hours * (60 * 60);
+                NSInteger minutes = num_seconds / 60;
+                num_seconds -= minutes * 60;
+                
+                NSString *timeAsString = [NSString stringWithFormat:@"%02d:%02d:%02d",hours,minutes,num_seconds];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Workout Complete" message:[@"You finished in " stringByAppendingString:timeAsString] delegate:self cancelButtonTitle:@"Done" otherButtonTitles:nil];
+                alert.alertViewStyle = UIAlertViewStyleDefault;
+                [alert show];
             }
         }
+    }
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0 && [[alertView title] isEqualToString:@"Workout Complete"]) {
+        [[self navigationController] popViewControllerAnimated:TRUE];
     }
 }
 

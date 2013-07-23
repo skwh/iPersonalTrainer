@@ -281,11 +281,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "iphysicaltrainer/workoutProgress.m"
-         timestampString = "396219342.948397"
+         timestampString = "396304709.216843"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "127"
-         endingLineNumber = "127"
+         startingLineNumber = "149"
+         endingLineNumber = "149"
          landmarkName = "-handleTapGesture:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -294,24 +294,24 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "iphysicaltrainer/workoutProgress.m"
-         timestampString = "396219342.948397"
+         timestampString = "396299363.79224"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "90"
-         endingLineNumber = "90"
+         startingLineNumber = "101"
+         endingLineNumber = "101"
          landmarkName = "-loadScroller"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "iphysicaltrainer/workoutProgress.m"
-         timestampString = "396219696.936599"
+         timestampString = "396304709.216843"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "140"
-         endingLineNumber = "140"
+         startingLineNumber = "171"
+         endingLineNumber = "171"
          landmarkName = "-handleTapGesture:"
          landmarkType = "5">
       </FileBreakpoint>
