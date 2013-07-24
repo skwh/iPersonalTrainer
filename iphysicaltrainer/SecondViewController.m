@@ -26,6 +26,7 @@
 @synthesize runTimeLabel = _runTimeLabel;
 @synthesize privateTimer = _privateTimer;
 @synthesize timeSinceTimerStarted = _timeSinceTimerStarted;
+@synthesize startStopButton = _startStopButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -50,12 +51,16 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)startStopButtonPressed {
+-(IBAction)startStopButtonPressed:(id)sender {
     if (!_TIMER_ON) {
+        [_runTimeLabel setText:@"Run Time: 00:00:00"];
         _privateTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerFired) userInfo:nil repeats:YES];
+        [_startStopButton setTitle:@"Stop Run" forState:UIControlStateNormal];
         _TIMER_ON = YES;
     } else if (_TIMER_ON) {
         [_privateTimer invalidate];
+        _timeSinceTimerStarted = 0;
+        [_startStopButton setTitle:@"Start Run" forState:UIControlStateNormal];
         _TIMER_ON = NO;
     }
 }

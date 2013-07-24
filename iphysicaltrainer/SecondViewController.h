@@ -14,6 +14,7 @@
 @property BOOL usingLargeScreen;
 
 -(void)timerFired;
--(void)startStopButtonPressed;
+-(IBAction)startStopButtonPressed:(id)sender;
+-(void)updateRunTimeLabel;
 
 @end
